@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import React from 'react';
+import Gap from '../../atoms/Gap';
 import Navbar from '../../moleculs/Navbar';
 
 function ShowCaseLayout({ title, metaDescription = 'meta', children }) {
@@ -15,7 +16,8 @@ function ShowCaseLayout({ title, metaDescription = 'meta', children }) {
         />
       </Head>
       <Navbar />
-      {children}
+      <div className="container">{children}</div>
+      <Gap height={70} />
     </div>
   );
 }

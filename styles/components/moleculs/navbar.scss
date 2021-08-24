@@ -2,9 +2,11 @@
 @import '../../utils/mixins.scss';
 
 .navbar {
-  background-color: $gray-600;
+  z-index: 50;
+  background-color: $gray-700;
   color: $gray-50;
   @include fontMono();
+  @include boxShadow();
   height: 60px;
   display: flex;
   align-items: center;
@@ -30,15 +32,16 @@
     gap: 25px;
   }
 }
-
-@media (min-width: 640px) {
+.navbar-gap {
+  position: relative;
+  height: 2vw;
 }
 
 @media (min-width: 768px) {
   .navbar {
     top: 0;
     bottom: auto;
-    height: 80px;
+    height: 70px;
     &-brand {
       h1 {
         display: block;
@@ -47,5 +50,10 @@
         display: none;
       }
     }
+  }
+  .navbar-gap {
+    position: sticky;
+    height: 70px;
+    bottom: auto;
   }
 }

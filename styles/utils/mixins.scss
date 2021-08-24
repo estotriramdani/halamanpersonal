@@ -1,3 +1,15 @@
 @mixin fontMono {
   font-family: 'Roboto Mono', monospace;
 }
+
+@mixin boxShadow() {
+  box-shadow: 1px 1px 18px rgba(0, 0, 0, 0.06);
+}
+
+@mixin borderRadiusMd {
+  border-radius: 10px;
+}
+
+@mixin borderRadiusSm {
+  border-radius: 5px;
+}

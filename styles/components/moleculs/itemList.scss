@@ -1,0 +1,18 @@
+.item-list {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding-bottom: 80px;
+}
+
+@media (min-width: 768px) {
+  .item-list {
+    padding-bottom: 20px;
+    min-height: calc(100vh - 80px);
+    position: sticky;
+    position: -webkit-sticky;
+    overflow: auto;
+    bottom: 0;
+  }
+}

@@ -1,0 +1,58 @@
+@import '../../utils/mixins.scss';
+@import '../../utils/variables.scss';
+
+.item-card {
+  height: 80px;
+  transition: all 0.3s;
+  background-color: $gray-50;
+  color: $gray-700;
+  height: 80px;
+  overflow: hidden;
+  display: flex;
+  @include fontMono();
+  @include boxShadow();
+  @include borderRadiusMd();
+  &:hover {
+    background-color: $gray-700;
+    color: $gray-50;
+    .item-card-thumb {
+      opacity: 0.4;
+    }
+  }
+  &-thumb {
+    position: relative;
+    width: 120px;
+    height: 80px;
+    display: none;
+  }
+  &-text-wrapper {
+    padding: 15px;
+    &-title {
+      font-size: 0.9em;
+      margin-bottom: 5px;
+    }
+    &-subtitle {
+      font-size: 0.8em;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .item-card {
+    height: 120px;
+    &-thumb {
+      display: block;
+      width: 170px;
+      height: 120px;
+    }
+    &-text-wrapper {
+      &-title {
+        font-size: 1em;
+      }
+      &-subtitle {
+        font-size: 0.9em;
+        line-height: normal;
+      }
+    }
+  }
+}

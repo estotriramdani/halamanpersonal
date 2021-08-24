@@ -2,9 +2,26 @@
 .nav-link {
   text-align: center;
   display: flex;
-  gap: 5px;
+  gap: 8px;
   color: $gray-300 !important;
   &:hover {
     color: $gray-50 !important;
+  }
+  &-title {
+    display: none;
+  }
+  &-icon {
+    font-size: 25px;
+  }
+}
+
+@media (min-width: 768px) {
+  .nav-link {
+    &-title {
+      display: block;
+    }
+    &-icon {
+      font-size: 1em;
+    }
   }
 }
