@@ -1,0 +1,51 @@
+@import '../../utils/variables.scss';
+@import '../../utils/mixins.scss';
+
+.navbar {
+  background-color: $gray-600;
+  color: $gray-50;
+  @include fontMono();
+  height: 60px;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 0 5vh;
+  font-weight: 400;
+  justify-content: space-between;
+  &-brand {
+    h1 {
+      display: none;
+    }
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    &-icon {
+      font-size: 25px;
+    }
+  }
+  .nav-item {
+    display: flex;
+    gap: 25px;
+  }
+}
+
+@media (min-width: 640px) {
+}
+
+@media (min-width: 768px) {
+  .navbar {
+    top: 0;
+    bottom: auto;
+    height: 80px;
+    &-brand {
+      h1 {
+        display: block;
+      }
+      &-icon {
+        display: none;
+      }
+    }
+  }
+}

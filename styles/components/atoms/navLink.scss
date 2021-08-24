@@ -1,0 +1,10 @@
+@import '../../utils/variables.scss';
+.nav-link {
+  text-align: center;
+  display: flex;
+  gap: 5px;
+  color: $gray-300 !important;
+  &:hover {
+    color: $gray-50 !important;
+  }
+}
