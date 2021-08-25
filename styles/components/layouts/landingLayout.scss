@@ -1,0 +1,268 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700&display=swap');
+
+@import '../../utils/variables.scss';
+@import '../../utils/mixins.scss';
+
+$primary: #023047;
+$secondary: #219ebc;
+$secondary-blue: #090b0c;
+$text-dark: #252b42;
+@mixin gradientPurple {
+  background: linear-gradient(to top right, $primary, $secondary);
+}
+@mixin h1 {
+  font-weight: 900;
+  font-size: 55;
+  line-height: 65.5;
+}
+
+@mixin h2 {
+  font-weight: 400;
+  font-size: 46px;
+  line-height: 57px;
+}
+
+@mixin h3 {
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 33px;
+}
+
+@mixin h4 {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+@mixin h5 {
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+@mixin paragpraph {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+}
+
+@mixin button {
+  font-family: 'Roboto', sans-serif;
+  color: white;
+  outline: none;
+  border: none;
+  padding: 15px 0;
+  width: 100%;
+  @include h4();
+  text-transform: uppercase;
+  text-align: center;
+  border-radius: 5px;
+  transition: all 0.2s;
+  cursor: pointer;
+  display: block;
+  // border: 3px solid white;
+}
+.button-blue {
+  background-color: #023047;
+  @include button();
+  &:hover,
+  &:focus {
+    color: #023047;
+    background-color: white;
+  }
+}
+
+.button-red {
+  background-color: $primary;
+  @include button();
+
+  &:hover,
+  &:focus {
+    color: $primary;
+    background-color: white;
+  }
+}
+
+.underline {
+  position: relative;
+  // background-color: $primary;
+  display: inline-block;
+  height: 10px;
+  &::before {
+    position: absolute;
+    width: 300px;
+    height: 100%;
+    background-color: $primary;
+    bottom: 0;
+    left: 0;
+  }
+}
+
+.hero {
+  position: relative;
+  @include gradientPurple();
+  font-family: 'Roboto', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  &-text {
+    flex: 1;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+    &-title {
+      font-size: 36px;
+      font-weight: 900;
+    }
+    &-subtitle {
+      @include h4();
+    }
+    &-button {
+      width: 100%;
+    }
+  }
+  &-image {
+    display: none;
+  }
+}
+
+.feature-section {
+  color: $text-dark;
+  font-family: 'Roboto', sans-serif;
+  .heading-group-wrapper {
+    text-align: center;
+    padding: 30px;
+    h2 {
+      @include h2();
+    }
+    h3 {
+      @include h3();
+    }
+    h4 {
+      @include h4();
+    }
+  }
+  .feature-card-wrapper {
+    padding: 50px 40px 98px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    .feature-card {
+      width: 100%;
+      background: white;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s;
+      &:hover {
+        @include gradientPurple();
+        color: white;
+      }
+      &-heading {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+        &-icon {
+          text-align: center;
+          background-color: $primary;
+          color: white;
+          font-size: 17px;
+          width: 40px;
+          height: 40px;
+          line-height: 40px;
+          border-radius: 20px;
+        }
+        &-title {
+          flex: 1;
+          text-align: left;
+          @include h3();
+        }
+      }
+      &-body {
+        @include paragpraph();
+      }
+    }
+  }
+}
+
+.cta-section {
+  @include gradientPurple();
+  padding: 70px 20px;
+  width: 100%;
+  font-family: 'Roboto', sans-serif;
+  background-color: red;
+  text-align: center;
+  color: white;
+  text-align: center;
+  h2 {
+    @include h2();
+    margin-top: 10px;
+  }
+  h3 {
+    @include h3();
+    // margin-bottom: 59px;
+  }
+  p {
+    @include paragpraph();
+  }
+  .button-wrapper {
+    text-align: center;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero {
+    &-text {
+      &-title,
+      &-subtitle,
+      &-button {
+        z-index: 20;
+      }
+      &-button {
+        width: 30%;
+      }
+    }
+
+    padding: 5vh;
+    &-image {
+      opacity: 0.3;
+      z-index: 10;
+      display: block;
+      position: absolute;
+      width: 800px;
+      height: 450px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      overflow: hidden;
+      border-radius: 10px;
+      @include boxShadow();
+    }
+  }
+  .feature-section {
+    .feature-card-wrapper {
+      padding: 50px 50px 98px 50px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      flex-wrap: wrap;
+      .feature-card {
+        padding: 30px;
+        width: 350px;
+      }
+    }
+  }
+  .cta-section {
+    .button-wrapper {
+      margin: auto;
+      width: 30%;
+    }
+  }
+}
