@@ -29,3 +29,20 @@ a {
 body {
   background-color: $gray-100;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $gray-400;
+  border-radius: 1px;
+  &:hover {
+    background: $gray-500;
+  }
+}
+
+::-webkit-scrollbar {
+  background: $gray-200;
+  width: 10px;
+}

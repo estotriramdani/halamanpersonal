@@ -1,7 +1,10 @@
 import Head from 'next/head';
+import Link from 'next/link';
 import Gap from '../src/components/atoms/Gap';
 import FeatureCard from '../src/components/moleculs/FeatureCard';
+import TestimonialCard from '../src/components/moleculs/TestimonialCard';
 import Image from 'next/image';
+import IMGTheme from '../src/images/theme-section.png';
 
 export default function Home() {
   return (
@@ -34,13 +37,6 @@ export default function Home() {
               </a>
             </div>
           </div>
-          {/* <div className="hero-image">
-            <Image
-              src="http://esto.my.id/files/images/portfolios-mockup/thumbnail/daily-prayer.jpg"
-              alt={'no alt'}
-              layout="fill"
-            />
-          </div> */}
         </div>
         <Gap height={70} />
         <div className="feature-section">
@@ -62,10 +58,24 @@ export default function Home() {
             <FeatureCard />
           </div>
         </div>
+        <div className="theme-section">
+          <h2>Theme</h2>
+          <Gap height={14} />
+          <h4>You are free to choose theme you love</h4>
+          <div className="theme-image">
+            <Image
+              src={IMGTheme}
+              alt="Theme illustration"
+              layout="fill"
+              objectFit="contain"
+              quality={50}
+            />
+          </div>
+        </div>
         <div className="cta-section">
           <h3>Let&apos;s Build Your Own</h3>
           <h2>Build</h2>
-          <Gap height={30} />
+          <Gap height={5} />
           <p>
             It is easy to set everything up. Just follow the instructions and,
             boom, you will get your own website!
@@ -77,8 +87,76 @@ export default function Home() {
             </a>
           </div>
         </div>
-        <div className="testimonial-section"></div>
+        <Gap height={40} />
+        <div className="testimonial-section">
+          <h3>Have A Look</h3>
+          <h2>Showcase</h2>
+          <Gap height={5} />
+          <p>
+            In case you want to check the website that already built, follow
+            links bellow!
+          </p>
+          <Gap height={50} />
+          <div className="testimonial-card-wrapper">
+            <TestimonialCard />
+            <TestimonialCard />
+            <TestimonialCard />
+            <TestimonialCard />
+            <TestimonialCard />
+          </div>
+          <Gap height={40} />
+          <Link href="/all-user">
+            <a
+              style={{
+                textDecoration: 'underline',
+              }}
+              className="see-all-list"
+            >
+              See full list here!
+            </a>
+          </Link>
+        </div>
+        <Gap height={40} />
       </main>
+      <footer className="footer">
+        <div className="footer-item-wrapper">
+          <div className="footer-item">
+            <h2>Contact</h2>
+            <ul>
+              <li>
+                <a href="https://instagram.com">Instagram</a>
+              </li>
+              <li>
+                <a href="https://facebook.com">Email</a>
+              </li>
+            </ul>
+          </div>
+          <div className="footer-item">
+            <h2>Contributor</h2>
+            <ul>
+              <li>
+                <a href="https://estotriramdani.github.io">Esto Triramdani N</a>
+              </li>
+              <li>
+                <a href="https://github.com/mazuhdi">M Agung Zuhdi </a>
+              </li>
+            </ul>
+          </div>
+          <div className="footer-item">
+            <h2>Contributing</h2>
+            <ul>
+              <li>
+                <a href="https://github.com/estotriramdani">
+                  Click Here To Contribute
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </footer>
+      <div className="bottom-section">
+        <p>Copyright © 2021 HalamanPersonal.id</p>
+      </div>
     </div>
   );
 }
