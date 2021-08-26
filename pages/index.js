@@ -5,6 +5,8 @@ import FeatureCard from '../src/components/moleculs/FeatureCard';
 import TestimonialCard from '../src/components/moleculs/TestimonialCard';
 import Image from 'next/image';
 import IMGTheme from '../src/images/theme-section.png';
+import Hero from '../src/components/Layout/LandingLayout/Hero';
+import Footer from '../src/components/Layout/LandingLayout/Footer';
 
 export default function Home() {
   return (
@@ -22,22 +24,7 @@ export default function Home() {
         />
       </Head>
       <main>
-        <div className="hero">
-          <div className="hero-text">
-            <h1 className="hero-text-title" style={{ position: 'relative' }}>
-              Show Yourself To <span className="underline">The World</span>.
-            </h1>
-            <h2 className="hero-text-subtitle">
-              Create your personal web page to show the world your masterpiece
-            </h2>
-            <Gap height={10} />
-            <div className="hero-text-button">
-              <a href="#" className="button-blue " tabIndex={1}>
-                Try Now
-              </a>
-            </div>
-          </div>
-        </div>
+        <Hero />
         <Gap height={70} />
         <div className="feature-section">
           <div className="heading-group-wrapper">
@@ -118,45 +105,7 @@ export default function Home() {
         </div>
         <Gap height={40} />
       </main>
-      <footer className="footer">
-        <div className="footer-item-wrapper">
-          <div className="footer-item">
-            <h2>Contact</h2>
-            <ul>
-              <li>
-                <a href="https://instagram.com">Instagram</a>
-              </li>
-              <li>
-                <a href="https://facebook.com">Email</a>
-              </li>
-            </ul>
-          </div>
-          <div className="footer-item">
-            <h2>Contributor</h2>
-            <ul>
-              <li>
-                <a href="https://estotriramdani.github.io">Esto Triramdani N</a>
-              </li>
-              <li>
-                <a href="https://github.com/mazuhdi">M Agung Zuhdi </a>
-              </li>
-            </ul>
-          </div>
-          <div className="footer-item">
-            <h2>Contributing</h2>
-            <ul>
-              <li>
-                <a href="https://github.com/estotriramdani">
-                  Click Here To Contribute
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </footer>
-      <div className="bottom-section">
-        <p>Copyright © 2021 HalamanPersonal.id</p>
-      </div>
+      <Footer />
     </div>
   );
 }
