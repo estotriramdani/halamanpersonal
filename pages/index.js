@@ -7,6 +7,7 @@ import Image from 'next/image';
 import IMGTheme from '../src/images/theme-section.png';
 import Hero from '../src/components/Layout/LandingLayout/Hero';
 import Footer from '../src/components/Layout/LandingLayout/Footer';
+import Skeleton from 'react-loading-skeleton';
 
 export default function Home() {
   return (
@@ -51,6 +52,7 @@ export default function Home() {
           <h4>You are free to choose theme you love</h4>
           <div className="theme-image">
             <Image
+              placeholder="blur"
               src={IMGTheme}
               alt="Theme illustration"
               layout="fill"
