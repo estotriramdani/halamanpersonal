@@ -1,5 +1,6 @@
 import React from 'react';
 import Gap from '../../atoms/Gap';
+import Link from 'next/link';
 
 const Hero = () => {
   return (
@@ -13,9 +14,11 @@ const Hero = () => {
         </h2>
         <Gap height={10} />
         <div className="hero-text-button">
-          <a href="#" className="button-blue " tabIndex={1}>
-            Try Now
-          </a>
+          <Link href="/auth/register">
+            <a className="button-primary" tabIndex={1}>
+              Try Now
+            </a>
+          </Link>
         </div>
       </div>
     </div>

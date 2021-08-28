@@ -1,0 +1,97 @@
+@import '../../utils/variables';
+@import '../../utils/mixins';
+
+$primary: #023047;
+$secondary: #219ebc;
+$secondary-blue: #090b0c;
+$text-dark: #252b42;
+$light: #f9fafb;
+
+@mixin gradientPurple {
+  background: linear-gradient(to top right, $primary, $secondary);
+}
+
+@mixin h1 {
+  font-weight: 900;
+  font-size: 55;
+  line-height: 65.5;
+}
+
+@mixin h2 {
+  font-weight: 400;
+  font-size: 46px;
+  line-height: 57px;
+}
+
+@mixin h3 {
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 33px;
+}
+
+@mixin h4 {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+@mixin h5 {
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+@mixin paragpraph {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+}
+
+@mixin button {
+  font-family: 'Roboto', sans-serif;
+  outline: none;
+  border: none;
+  padding: 10px 0;
+  width: 100%;
+  @include h4();
+  text-transform: uppercase;
+  text-align: center;
+  border-radius: 5px;
+  transition: all 0.15s;
+  cursor: pointer;
+  display: block;
+  box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
+}
+
+.button-primary {
+  background-color: $primary;
+  color: $light;
+  @include button();
+  &:hover,
+  &:focus {
+    color: $primary;
+    background-color: $light;
+  }
+}
+
+.button-secondary {
+  background-color: $secondary;
+  color: $light;
+  @include button();
+  &:hover,
+  &:focus {
+    color: $secondary;
+    background-color: $light;
+  }
+}
+
+.button-white {
+  background-color: $light;
+  color: $text-dark;
+  @include button();
+  &:hover,
+  &:focus {
+    color: $light;
+    background-color: $primary;
+  }
+}
