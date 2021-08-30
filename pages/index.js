@@ -1,13 +1,35 @@
+/* eslint-disable react/display-name */
+import React, { lazy } from 'react';
 import Head from 'next/head';
-import Link from 'next/link';
 import Gap from '../src/components/atoms/Gap';
-import TestimonialCard from '../src/components/moleculs/TestimonialCard';
-import Hero from '../src/components/Layout/LandingLayout/Hero';
-import Footer from '../src/components/Layout/LandingLayout/Footer';
-import FeatureSection from '../src/components/Layout/LandingLayout/FeatureSection';
-import ThemeSection from '../src/components/Layout/LandingLayout/ThemeSection';
-import CTASection from '../src/components/Layout/LandingLayout/CTASection';
-import TestimonialSection from '../src/components/Layout/LandingLayout/TestimonialSection';
+import dynamic from 'next/dynamic';
+import Skeleton from 'react-loading-skeleton';
+// import {
+//   Hero,
+//   CTASection,
+//   FeatureSection,
+//   Footer,
+//   TestimonialSection,
+//   ThemeSection,
+// } from '../src/components/Layout/LandingLayout';
+const Hero = dynamic(() =>
+  import('../src/components/Layout/LandingLayout/Hero')
+);
+const CTASection = dynamic(() =>
+  import('../src/components/Layout/LandingLayout/CTASection')
+);
+const FeatureSection = dynamic(() =>
+  import('../src/components/Layout/LandingLayout/FeatureSection')
+);
+const Footer = dynamic(() =>
+  import('../src/components/Layout/LandingLayout/Footer')
+);
+const TestimonialSection = dynamic(() =>
+  import('../src/components/Layout/LandingLayout/TestimonialSection')
+);
+const ThemeSection = dynamic(() =>
+  import('../src/components/Layout/LandingLayout/ThemeSection')
+);
 
 export default function Home() {
   return (

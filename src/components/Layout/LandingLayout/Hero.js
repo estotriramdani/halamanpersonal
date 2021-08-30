@@ -14,9 +14,9 @@ const Hero = () => {
         </h2>
         <Gap height={10} />
         <div className="hero-text-button">
-          <Link href="/auth/register">
+          <Link href="/auth/login">
             <a className="button-primary" tabIndex={1}>
-              Try Now
+              Get Started
             </a>
           </Link>
         </div>

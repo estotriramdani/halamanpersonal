@@ -18,8 +18,8 @@ const Register = () => {
         <Gap height={10} />
         <AuthInput
           icon="briefcase-fill"
-          label="Proffesion"
-          id="name"
+          label="Profession"
+          id="profession"
           placeholder="Are you student, software engineer, or something?"
           type="text"
         />
@@ -98,7 +98,9 @@ const Register = () => {
         <Gap height={15} />
         <AuthUpload />
         <Gap height={20} />
-        <button className="button-primary">Register</button>
+        <Link href="/auth/login" passHref>
+          <button className="button-primary">Register</button>
+        </Link>
       </div>
       <Gap height={30} />
       <div style={{ fontSize: '14px' }}>

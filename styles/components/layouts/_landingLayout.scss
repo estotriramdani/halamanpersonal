@@ -1,5 +1,7 @@
 @import '../../utils/primary-theme/index';
-
+a {
+  text-decoration: none;
+}
 .underline {
   position: relative;
   // background-color: $primary;
@@ -240,6 +242,7 @@
     }
     ul {
       li {
+        list-style: none;
         margin-bottom: 10px;
         a {
           color: $gray-300;
