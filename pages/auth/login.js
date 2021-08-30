@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import AuthAlert from '../../src/components/atoms/Alert';
 import Gap from '../../src/components/atoms/Gap';
 import AuthInput from '../../src/components/auth/AuthInput';
 import AuthLayout from '../../src/components/Layout/AuthLayout';
@@ -6,6 +7,7 @@ import AuthLayout from '../../src/components/Layout/AuthLayout';
 function Login() {
   return (
     <AuthLayout title="Login">
+      <AuthAlert message="Register succed" type="success" />
       <div className="auth-form-wrapper">
         <AuthInput
           icon="envelope-fill"
@@ -23,7 +25,9 @@ function Login() {
           type="password"
         />
         <Gap height={20} />
-        <button className="button-primary">Login</button>
+        <Link href="/dashboard" passHref>
+          <button className="button-primary">Login</button>
+        </Link>
       </div>
       <Gap height={30} />
       <div style={{ fontSize: '14px' }}>

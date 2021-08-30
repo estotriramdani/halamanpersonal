@@ -1,5 +1,4 @@
-@import '../../utils/variables';
-@import '../../utils/mixins';
+@import '../../utils/index';
 
 $primary: #023047;
 $secondary: #219ebc;
@@ -7,6 +6,9 @@ $secondary-blue: #090b0c;
 $text-dark: #252b42;
 $light: #f9fafb;
 
+@mixin fontSans {
+  font-family: 'Roboto', sans-serif;
+}
 @mixin gradientPurple {
   background: linear-gradient(to top right, $primary, $secondary);
 }
@@ -51,7 +53,7 @@ $light: #f9fafb;
   font-family: 'Roboto', sans-serif;
   outline: none;
   border: none;
-  padding: 10px 0;
+  padding: 12px 0;
   width: 100%;
   @include h4();
   text-transform: uppercase;
@@ -61,6 +63,7 @@ $light: #f9fafb;
   cursor: pointer;
   display: block;
   box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
 }
 
 .button-primary {

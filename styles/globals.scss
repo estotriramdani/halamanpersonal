@@ -2,18 +2,12 @@
 // @import './utils/variables';
 @import './utils/fonts';
 
-@import './components/moleculs/index';
-
-@import './components/atoms/navLink';
-@import './components/atoms/itemCard';
-
-@import './components/layouts/showCaseLayout';
-@import './components/layouts/landingLayout';
+@import './components/index';
 
 // page styles
 @import './pages/index';
 
 #nprogress .bar {
-  background: $gray-50 !important;
-  height: 4px !important;
+  // background: $gray-50 !important;
+  // height: 4px !important;
 }
