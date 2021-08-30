@@ -4,8 +4,7 @@ import AuthInput from '../../src/components/auth/AuthInput';
 import AuthUpload from '../../src/components/auth/AuthUpload';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useState } from 'react';
-import { Editor, EditorState } from 'draft-js';
+import React from 'react';
 import 'draft-js/dist/Draft.css';
 
 export default function Dashboard() {
@@ -17,6 +16,19 @@ export default function Dashboard() {
         Silakan ubah atau sesuaikan informasi mengenai detail Anda. Perubahan
         informasi profil ini akan ditampilkan pada halaman utama website Anda.
       </p>
+      <Gap height={20} />
+      <div className="profile-photo-preview">
+        <Image
+          src={'https://estotriramdani.github.io/img/photo-1x1.jpg'}
+          layout="fill"
+          alt=""
+          quality="40"
+          placeholder="blur"
+          blurDataURL="https://estotriramdani.github.io/img/photo-1x1.jpg"
+        />
+      </div>
+      <Gap height={15} />
+      <AuthUpload />
       <Gap height={15} />
       <AuthInput
         icon="person-fill"
@@ -90,6 +102,24 @@ export default function Dashboard() {
         type="text"
       />
       <Gap height={10} />
+      <div className="dashboard-text-area">
+        <label>Skill (seperate with commas)</label>
+        <textarea
+          className=""
+          rows={5}
+          placeholder="Microsoft Word, Photoshop"
+        ></textarea>
+      </div>
+      <Gap height={10} />
+      <div className="dashboard-text-area">
+        <label>More info</label>
+        <textarea
+          className=""
+          rows={5}
+          placeholder="Please provide more info about you"
+        ></textarea>
+      </div>
+      <Gap height={10} />
       <div className="theme-picker">
         <p>Select Theme</p>
         <div className="radio">
@@ -102,20 +132,8 @@ export default function Dashboard() {
           <a>See all themes here</a>
         </Link>
       </div>
-      <Gap height={10} />
-      <Gap height={15} />
-      <div className="profile-photo-preview">
-        <Image
-          src={'https://estotriramdani.github.io/img/photo-1x1.jpg'}
-          layout="fill"
-          alt=""
-          quality="40"
-          placeholder="blur"
-          blurDataURL="https://estotriramdani.github.io/img/photo-1x1.jpg"
-        />
-      </div>
-      <Gap height={15} />
-      <AuthUpload />
+      <Gap height={20} />
+      <button className="button-secondary">Change Profile</button>
     </DashboardLayout>
   );
 }
