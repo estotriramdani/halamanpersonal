@@ -8,51 +8,6 @@ import { RegisterPage } from '../../src/components/auth/Register';
 const Register = () => {
   return (
     <AuthLayout title="Register">
-      <div className="auth-form-wrapper">
-        {/* <AuthInput
-          icon="person-fill"
-          label="Full Name"
-          id="name"
-          placeholder="You fullname is ..."
-          type="text"
-        />
-        <Gap height={10} />
-        <AuthInput
-          icon="textarea-t"
-          label="Username"
-          id="username"
-          placeholder="Type your username"
-          type="text"
-        />
-        <Gap height={10} />
-        <AuthInput
-          icon="envelope-fill"
-          label="Email"
-          id="email"
-          placeholder="Type your email"
-          type="text"
-        />
-        <Gap height={10} />
-        <AuthInput
-          icon="key-fill"
-          label="Password"
-          id="password"
-          placeholder="Create your password"
-          type="password"
-        />
-        <Gap height={10} />
-        <AuthInput
-          icon="key-fill"
-          label="Repeat Password"
-          id="passwordRepeat"
-          placeholder="Please repeat your password"
-          type="password"
-        />
-        <Gap height={15} />
-        <Link href="/auth/login" passHref>
-          <button className="button-primary">Register</button>
-        </Link> */}
-      </div>
       <RegisterPage />
       <Gap height={30} />
       <div style={{ fontSize: '14px' }}>
