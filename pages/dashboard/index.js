@@ -47,22 +47,6 @@ export default function Dashboard() {
       />
       <Gap height={10} />
       <AuthInput
-        icon="key-fill"
-        label="Password"
-        id="password"
-        placeholder="Create your password"
-        type="password"
-      />
-      <Gap height={10} />
-      <AuthInput
-        icon="key-fill"
-        label="Repeat Password"
-        id="passwordRepeat"
-        placeholder="Please repeat your password"
-        type="password"
-      />
-      <Gap height={10} />
-      <AuthInput
         icon="facebook"
         label="Facebook"
         id="facebook"
