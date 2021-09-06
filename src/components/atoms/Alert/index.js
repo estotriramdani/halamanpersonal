@@ -8,13 +8,18 @@ const AuthAlert = ({ type, message }) => {
     marginBottom: '15px',
     backgroundColor: '',
     color: '',
+    boxShadow: '2px 2px 16px rgba(0, 0, 0, 0.2)',
   };
   if (type === 'success') {
-    styles.backgroundColor = 'green';
+    styles.backgroundColor = '#2ecc71';
     styles.color = 'white';
   }
   if (type === 'danger') {
-    styles.backgroundColor = 'red';
+    styles.backgroundColor = '#e74c3c';
+    styles.color = 'white';
+  }
+  if (type === 'warning') {
+    styles.backgroundColor = '#f1c40f';
     styles.color = 'white';
   }
 

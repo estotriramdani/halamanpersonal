@@ -166,9 +166,16 @@
   }
 }
 
+.trix-button--icon-attach,
+.trix-button-group--file-tools,
+.trix-button-group-spacer,
+.trix-button-group--file-tools {
+  display: none;
+}
+
 @media (min-width: 768px) {
   .dashboard-content,
   .dashboard-nav {
-    width: 600px;
+    width: 700px;
   }
 }
