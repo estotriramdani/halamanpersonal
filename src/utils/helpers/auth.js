@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { baseUrl } from '../../configs/baseUrl';
 
 const register = async (values) => {
   const data = new FormData();
@@ -9,7 +10,7 @@ const register = async (values) => {
   data.append('theme_id', '1');
   const config = {
     method: 'post',
-    url: 'http://localhost:8000/api/register',
+    url: baseUrl.API + 'register',
     headers: {
       Accept: 'application/json',
     },
@@ -45,10 +46,7 @@ const login = async (values) => {
   };
 
   try {
-    const response = await fetch(
-      'http://localhost:8000/api/login',
-      requestOptions
-    );
+    const response = await fetch(baseUrl.API + 'login', requestOptions);
     const responseJson = await response.json();
     return responseJson;
   } catch (error) {

@@ -1,6 +1,8 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import Gap from '../../atoms/Gap';
+import ButtonLogout from './ButtonLogout';
+import HomeButton from './HomeButton';
 function DashboardLayout({ title, pageTitle, children }) {
   const navItem = [
     {
@@ -55,24 +57,21 @@ function DashboardLayout({ title, pageTitle, children }) {
       <div className="dashboard-nav">
         <div className="dashboard-nav-item">
           <Link href={'/estotriramdani'}>
-            <a>
+            <a
+              style={{
+                width: '100%',
+                display: 'inline-block',
+                cursor: 'pointer',
+              }}
+            >
               <i className={'bi bi-' + 'globe'}></i>&nbsp; {'View Your Site'}
             </a>
           </Link>
         </div>
       </div>
       <div className="dashboard-nav">
-        {footerItem.map((item) => {
-          return (
-            <div className="dashboard-nav-item" key={item.menu}>
-              <Link href={item.href}>
-                <a>
-                  <i className={'bi bi-' + item.icon}></i>&nbsp; {item.menu}
-                </a>
-              </Link>
-            </div>
-          );
-        })}
+        <HomeButton />
+        <ButtonLogout />
       </div>
     </div>
   );

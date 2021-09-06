@@ -9,7 +9,6 @@ import {
 import Gap from '../atoms/Gap';
 import { register } from '../../utils/helpers/auth';
 import { useRouter } from 'next/dist/client/router';
-import safetyToken from 'safety-token';
 import AuthAlert from '../atoms/Alert';
 
 export const RegisterPage = () => {
