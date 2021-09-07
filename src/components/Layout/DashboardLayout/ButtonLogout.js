@@ -41,7 +41,7 @@ function ButtonLogout() {
         setTimeout(() => {
           setIsLoggedOut(true);
           scrollTo(top);
-        }, 800);
+        }, 400);
         setTimeout(() => {
           setIsLoggedOut(false);
           router.push('/auth/login');
