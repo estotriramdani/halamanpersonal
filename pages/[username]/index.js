@@ -1,17 +1,11 @@
+import { useRouter } from 'next/dist/client/router';
 import React from 'react';
+import Theme1Home from '../../src/components/pages/themes/Theme-1/Theme1Home';
 
-function index() {
-  return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
-      <p>It will be user home page</p>
-    </div>
-  );
+function Home() {
+  const router = useRouter();
+  const username = router.query.username;
+  return <Theme1Home username={username} />;
 }
 
-export default index;
+export default Home;

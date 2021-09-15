@@ -22,8 +22,8 @@ function Profile() {
   const [userInfo, setUserInfo] = useState({});
   const [token, setToken] = useState('');
   const [photo, setPhoto] = useState({});
-  const [introduction, setIntroduction] = useState('www');
-  const [moreInfo, setMoreInfo] = useState('ww');
+  const [introduction, setIntroduction] = useState('');
+  const [moreInfo, setMoreInfo] = useState('');
 
   const handleChangePhoto = (e) => {
     const file = e.target.files[0];
