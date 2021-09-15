@@ -4,11 +4,13 @@ import Theme1Layout from './Theme1Layout';
 import Image from 'next/image';
 import Theme1TypeCard from './Theme1TypeCard';
 import Theme1Navigation from './Theme1Navigation';
+import { baseUrl } from '../../../../configs/baseUrl';
 
-export default function Theme1Home({ username }) {
+export default function Theme1Home({ username, userData }) {
+  console.log(userData);
   return (
     <>
-      <Theme1Layout title="Home | Esto Triramdani N">
+      <Theme1Layout title="Home" username={username}>
         <Theme1Navigation username={username} />
         <section className="theme-1-dark-section">
           <div className="theme-1-profile">
@@ -18,7 +20,7 @@ export default function Theme1Home({ username }) {
               data-aos-duration="900"
             >
               <Image
-                src="https://estotriramdani.github.io/img/photo-1x1.jpg"
+                src={baseUrl.IMAGE + userData.photo}
                 alt="profile photo"
                 layout="fill"
                 quality={50}
@@ -31,33 +33,42 @@ export default function Theme1Home({ username }) {
               data-aos="fade-up"
               data-aos-duration="900"
             >
-              <p className="theme-1-profile-desc-name">
-                Esto Triramdani Nurlustiawan
-              </p>
+              <p className="theme-1-profile-desc-name">{userData.name}</p>
               <p className="theme-1-profile-desc-headline">
-                Front-end Engineer
+                {userData.headline}
               </p>
-              <p className="theme-1-profile-desc-introduction">
-                I am a fast leaner, speed worker, and adaptive person. When
-                working on a project, I can turn myself into target-oriented
-                mode. I love to solve problems with code and keep the solution
-                as simple as possible. I also have written some books
-                (bukuesto.github.io).
-              </p>
-              <p className="theme-1-profile-desc-email">
-                estotriramdani@gmail.com
-              </p>
+              <p
+                className="theme-1-profile-desc-introduction"
+                dangerouslySetInnerHTML={{ __html: userData.introduction }}
+              ></p>
+              <p className="theme-1-profile-desc-email">{userData.email}</p>
               <div className="theme-1-profile-desc-socmed">
-                <a href="#">
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  href={`https://instagram.com/${userData.instagram}`}
+                >
                   <i className="theme-1-bi bi-instagram"></i>
                 </a>
-                <a href="#">
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  href={`https://facebook.com/${userData.facebook}`}
+                >
                   <i className="theme-1-bi bi-facebook"></i>
                 </a>
-                <a href="#">
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  href={`https://github.com/${userData.github}`}
+                >
                   <i className="theme-1-bi bi-github"></i>
                 </a>
-                <a href="#">
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  href={`https://linkedin.com/in/${userData.linkedin}`}
+                >
                   <i className="theme-1-bi bi-linkedin"></i>
                 </a>
               </div>
@@ -73,24 +84,10 @@ export default function Theme1Home({ username }) {
           data-aos="fade-in"
           data-aos-duration="2000"
         >
-          <div className="theme-1-more-info">
-            <p>
-              <strong>Programming Languages</strong>
-            </p>
-            <p>JavaScript • PHP • Python • Dart • SQL</p>
-            <p>
-              <strong>Frameworks / Libraries</strong>
-            </p>
-            <p>
-              React JS • React Native • Bootstrap CSS • Laravel • CodeIgniter •
-              Vue JS • SASS • Angular • jQuery • Node JS • Express JS •
-              MySQL/MariaDB/PostgreSQL
-            </p>
-            <p>
-              <strong>Design Tools</strong>
-            </p>
-            <p>Adobe Photoshop • Adobe XD • Adobe Illustrator • Figma</p>
-          </div>
+          <div
+            className="theme-1-more-info"
+            dangerouslySetInnerHTML={{ __html: userData.more_info }}
+          ></div>
           <div className="theme-1-content-menu">
             <Theme1TypeCard
               pageName="experiences"

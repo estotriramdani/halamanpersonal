@@ -4,17 +4,17 @@ import React, { useEffect } from 'react';
 import Head from 'next/head';
 import Aos from 'aos';
 import Theme1Footer from './Theme1Footer';
-import Theme1Navigation from './Theme1Navigation';
 
-export default function Theme1Layout({ title, children }) {
+export default function Theme1Layout({ title, username, children }) {
   useEffect(() => {
     Aos.init();
   }, []);
   return (
     <>
       <Head>
-        <title>{title} | Esto Triramdani Nurlustiawan</title>
-        <link rel="stylesheet" href="/css/theme-1.css" />
+        <title>
+          {title} | {username}
+        </title>
         <link
           href="https://unpkg.com/aos@2.3.1/dist/aos.css"
           rel="stylesheet"

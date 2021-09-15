@@ -3,9 +3,7 @@ import Link from 'next/link';
 import Theme1Navigation from './Theme1Navigation';
 import Theme1ItemCard from './Theme1ItemCard';
 import useSWR from 'swr';
-import axios from 'axios';
-
-const fetcher = (url) => axios.get(url).then((res) => res.data);
+import fetcher from '../../../../utils/helpers/fetcher';
 
 export default function Theme1ShowCase({ username, type }) {
   let pageTitle = '...';
@@ -18,7 +16,7 @@ export default function Theme1ShowCase({ username, type }) {
   );
 
   return (
-    <Theme1Layout title={pageTitle}>
+    <Theme1Layout title={pageTitle} username={username}>
       <Theme1Navigation username={username} />
       <section className="theme-1-dark-section">
         <div className="theme-1-showcase-hero-index">

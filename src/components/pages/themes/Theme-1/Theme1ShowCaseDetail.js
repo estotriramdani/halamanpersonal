@@ -10,8 +10,8 @@ export default function Theme1ShowCaseDetail({ username, type }) {
     pageTitle = type[0].toUpperCase() + type.substr(1);
   }
   return (
-    <Theme1Layout title={pageTitle}>
-      <Theme1Navigation />
+    <Theme1Layout title={pageTitle} username={username}>
+      <Theme1Navigation username={username} />
       <section className="theme-1-dark-section">
         <div className="theme-1-showcase-hero-detail">
           <div className="theme-1-showcase-hero-detail-cover">
@@ -24,7 +24,12 @@ export default function Theme1ShowCaseDetail({ username, type }) {
               blurDataURL="/img/placeholder-landscape.jpg"
               layout="fill"
             />
-            <a href="#" className="theme-1-showcase-hero-detail-cover-link">
+            <a
+              href="http://esto.my.id/files/images/experiences/thumb/automateall.jpg"
+              target="_blank"
+              rel="noreferrer"
+              className="theme-1-showcase-hero-detail-cover-link"
+            >
               See original image
             </a>
           </div>

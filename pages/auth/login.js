@@ -1,7 +1,5 @@
 import Link from 'next/link';
-import AuthAlert from '../../src/components/atoms/Alert';
 import Gap from '../../src/components/atoms/Gap';
-import AuthInput from '../../src/components/auth/AuthInput';
 import { LoginPage } from '../../src/components/auth/Login';
 import AuthLayout from '../../src/components/Layout/AuthLayout';
 
