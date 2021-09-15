@@ -56,7 +56,7 @@ function ButtonLogout() {
       const credentials = window.localStorage.getItem('credentials');
       setToken(credentials);
       axios
-        .get(baseUrl.API + user_info.username)
+        .get(baseUrl.API + 'user/' + user_info.username)
         .then((response) => {
           setUserInfo(response.data.data);
         })

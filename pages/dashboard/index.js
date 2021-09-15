@@ -1,4 +1,3 @@
-import Gap from '../../src/components/atoms/Gap';
 import DashboardLayout from '../../src/components/Layout/DashboardLayout';
 import React from 'react';
 import 'draft-js/dist/Draft.css';

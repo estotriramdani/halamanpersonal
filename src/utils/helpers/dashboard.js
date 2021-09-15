@@ -29,7 +29,7 @@ const changeProfile = async (forms, introduction, moreInfo, photo, token) => {
 
   try {
     const response = await fetch(
-      baseUrl.API + 'user?_method=PUT',
+      baseUrl.API + 'users?_method=PUT',
       requestOptions
     );
     const responseJson = await response.json();
