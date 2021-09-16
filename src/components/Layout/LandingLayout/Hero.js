@@ -10,7 +10,6 @@ const Hero = () => {
 
   useEffect(() => {
     const user_info = window.localStorage.getItem('user_info');
-    console.log(user_info);
     if (user_info !== null || user_info !== '{}') {
       setIsLoggedIn(true);
     } else {

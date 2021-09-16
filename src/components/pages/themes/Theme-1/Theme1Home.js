@@ -7,7 +7,6 @@ import Theme1Navigation from './Theme1Navigation';
 import { baseUrl } from '../../../../configs/baseUrl';
 
 export default function Theme1Home({ username, userData }) {
-  console.log(userData);
   return (
     <>
       <Theme1Layout title="Home" username={username}>
@@ -18,6 +17,7 @@ export default function Theme1Home({ username, userData }) {
               className="theme-1-profile-photo"
               data-aos="fade-down"
               data-aos-duration="900"
+              style={{ background: '#fff' }}
             >
               <Image
                 src={baseUrl.IMAGE + userData.photo}

@@ -2,15 +2,15 @@ import axios from 'axios';
 import { useRouter } from 'next/dist/client/router';
 import React, { useEffect, useState } from 'react';
 import { baseUrl } from '../../../configs/baseUrl';
+import useUserInfo from '../../../utils/hooks/useUserInfo';
 import AuthAlert from '../../atoms/Alert';
 
 function ButtonLogout() {
   const router = useRouter();
   const [isLoaded, setIsLoaded] = useState(false);
   const [isLoggedOut, setIsLoggedOut] = useState(false);
-  const [userInfo, setUserInfo] = useState({});
-  const [token, setToken] = useState('');
   const [isLoggingOut, setIsLoggingOut] = useState(false);
+  const { userInfo, token } = useUserInfo();
 
   const handleLogout = () => {
     setIsLoggingOut(true);
@@ -50,21 +50,6 @@ function ButtonLogout() {
       .catch((error) => console.log('error', error));
   };
 
-  useEffect(() => {
-    if (!isLoaded) {
-      const user_info = JSON.parse(window.localStorage.getItem('user_info'));
-      const credentials = window.localStorage.getItem('credentials');
-      setToken(credentials);
-      axios
-        .get(baseUrl.API + 'user/' + user_info.username)
-        .then((response) => {
-          setUserInfo(response.data.data);
-        })
-        .then(() => {
-          setIsLoaded(true);
-        });
-    }
-  }, [isLoaded, token]);
   return (
     <div className="dashboard-nav-item">
       {isLoggedOut ? (
