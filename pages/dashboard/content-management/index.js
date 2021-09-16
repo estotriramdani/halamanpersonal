@@ -4,12 +4,17 @@ import useScript from '../../../src/utils/hooks/useScript';
 import AddContent from '../../../src/components/dashboard/AddContent';
 import useSWR from 'swr';
 import { baseUrl } from '../../../src/configs/baseUrl';
-import { useEffect, useState } from 'react';
 import useUserInfo from '../../../src/utils/hooks/useUserInfo';
+import Link from 'next/link';
+import styles from './content-management.module.css';
+import fetcher from '../../../src/utils/helpers/fetcher';
 
 export default function Dashboard() {
-  const userInfo = useUserInfo();
-  const status = useScript('/assets/trix.js');
+  const { userInfo } = useUserInfo();
+  const { data: types, errorType } = useSWR(
+    baseUrl.API + 'types/' + userInfo.username,
+    fetcher
+  );
   return (
     <DashboardLayout title="Content Management" pageTitle="Content Management">
       <h2 className="dashboard-h2">Content Management</h2>
@@ -20,10 +25,34 @@ export default function Dashboard() {
         <strong>selain</strong> profile atau home page.
       </p>
       <Gap height={20} />
-      <AddContent />
+      <AddContent
+        initialValues={{
+          title: '',
+          subtitle: '',
+          type: '',
+        }}
+        buttonTitle="Add Content"
+      />
       <hr />
       <Gap height="30px" />
       <h2 className="dashboard-h2">Konten yang Sudah Tersedia</h2>
+      <div className={styles.cardContentWrapper}>
+        {userInfo && types ? (
+          types.data !== 'NULL' ? (
+            types.data.map((type) => {
+              return (
+                <Link href={`/dashboard/content-management/${type}`} key={type}>
+                  <a className={styles.cardContent}>{type}</a>
+                </Link>
+              );
+            })
+          ) : (
+            <p>Belum ada konten apapun. Segera tambahkan.</p>
+          )
+        ) : (
+          ''
+        )}
+      </div>
       <Gap height="20px" />
     </DashboardLayout>
   );

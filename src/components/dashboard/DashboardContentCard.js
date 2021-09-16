@@ -1,11 +1,17 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-export default function DashboardContentCard() {
+export default function DashboardContentCard({
+  image,
+  title,
+  subtitle,
+  slug,
+  type,
+}) {
   return (
     <div
       style={{
-        width: '48.5%',
+        width: '100%',
         marginBottom: '10px',
         background: 'white',
         borderRadius: '5px',
@@ -17,27 +23,20 @@ export default function DashboardContentCard() {
         style={{
           position: 'relative',
           width: '100%',
-          height: '100px',
+          height: '150px',
           overflow: 'hidden',
         }}
       >
-        <Image
-          src="http://esto.my.id/files/images/experiences/thumb/aio.jpg"
-          alt=""
-          layout="fill"
-          objectFit="cover"
-        />
+        <Image src={image} alt={title} layout="fill" objectFit="cover" />
       </div>
       <div style={{ padding: '10px' }}>
-        <p style={{ fontSize: '16px', fontWeight: '700' }}>
-          PT Amerta Indah Otsuka
-        </p>
-        <p style={{ fontSize: '14px', fontWeight: '400' }}>Web Developer</p>
+        <p style={{ fontSize: '16px', fontWeight: '700' }}>{title}</p>
+        <p style={{ fontSize: '14px', fontWeight: '400' }}>{subtitle}</p>
         <p style={{ fontSize: '14px', fontWeight: '400' }}>
-          in <strong>Experience</strong>
+          in <strong>{type}</strong>
         </p>
       </div>
-      <Link href="/">
+      <Link href={`/dashboard/content-management/${type}/${slug}`}>
         <a
           style={{
             display: 'block',
@@ -51,7 +50,7 @@ export default function DashboardContentCard() {
             },
           }}
         >
-          Detail / Edit
+          Detail
         </a>
       </Link>
     </div>

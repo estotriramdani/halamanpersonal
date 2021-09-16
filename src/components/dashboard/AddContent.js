@@ -11,14 +11,21 @@ import AlertFloating from '../atoms/AlertFloating';
 import InputFormik from '../atoms/InputFormik';
 import TextareaFormik from '../atoms/TextareaFormik';
 import InputUpload from '../atoms/InputUpload';
+import { useRouter } from 'next/dist/client/router';
 
-export default function AddContent() {
+export default function AddContent({
+  initialValues,
+  image,
+  buttonTitle,
+  desc = '',
+  uploadLabel = 'Pilih photo cover (optional)',
+}) {
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const { data: types, error } = useSWR(baseUrl.API + 'types', fetcher);
   const [photo, setPhoto] = useState({});
-  const [description, setDescription] = useState('');
-
+  const [description, setDescription] = useState(desc);
+  const router = useRouter();
   const handleChangeDescription = (e) => {
     setDescription(e);
   };
@@ -38,11 +45,7 @@ export default function AddContent() {
         ''
       )}
       <Formik
-        initialValues={{
-          title: '',
-          subtitle: '',
-          type: '',
-        }}
+        initialValues={initialValues}
         validate={(values) => {
           const errors = {};
           if (!values.title) {
@@ -72,14 +75,16 @@ export default function AddContent() {
               setIsLoading(false);
               values.subtitle = '';
               values.title = '';
-              values.type = '';
               setPhoto('');
               setDescription('');
             }, 2000);
           }
           setTimeout(() => {
+            router.push('/dashboard/content-management/' + values.type);
+          }, 2100);
+          setTimeout(() => {
             scrollTo(top);
-          }, 2000);
+          }, 500);
         }}
       >
         {({ errors, touched, isValidating }) => (
@@ -112,13 +117,21 @@ export default function AddContent() {
               <Field
                 name="type"
                 id="type"
-                style={{ width: '100%', padding: '10px' }}
+                style={{
+                  width: '100%',
+                  padding: '10px',
+                  textTransform: 'capitalize',
+                }}
                 component="select"
               >
                 {types ? (
                   types.data.map((type) => {
                     return (
-                      <option value={type.name} key={type.id}>
+                      <option
+                        value={type.name}
+                        key={type.id}
+                        style={{ textTransform: 'capitalize' }}
+                      >
                         {type.name}
                       </option>
                     );
@@ -139,7 +152,7 @@ export default function AddContent() {
             />
             <Gap height={20} />
             <InputUpload
-              label="Pilih cover photo (optional)"
+              label={uploadLabel}
               name="photo"
               onChange={(e) => handleChangePhoto(e)}
               accept={'image/*'}
@@ -150,7 +163,7 @@ export default function AddContent() {
               className="button-secondary"
               disabled={isValidating}
             >
-              {isLoading ? 'Please wait...' : 'Add Content'}
+              {isLoading ? 'Please wait...' : buttonTitle}
             </button>
           </Form>
         )}

@@ -56,8 +56,6 @@ function Profile() {
     }
   }, [isLoaded, token]);
 
-  useScript('/assets/trix.js');
-
   return (
     <div>
       {isSuccess ? (

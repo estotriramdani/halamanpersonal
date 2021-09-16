@@ -8,8 +8,6 @@ import Skeleton from 'react-loading-skeleton';
 import useScript from '../../src/utils/hooks/useScript';
 
 export default function Dashboard() {
-  const status = useScript('/assets/trix.js');
-
   return (
     <DashboardLayout title="Developer Corner" pageTitle="Developer Corner">
       <h2 className="dashboard-h2">Developer Corner</h2>
