@@ -1,11 +1,5 @@
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { TrixEditor } from 'react-trix/dist/react-trix';
 import Gap from '../../src/components/atoms/Gap';
-import AuthInput from '../../src/components/auth/AuthInput';
 import DashboardLayout from '../../src/components/Layout/DashboardLayout';
-import Skeleton from 'react-loading-skeleton';
-import useScript from '../../src/utils/hooks/useScript';
 
 export default function Dashboard() {
   return (
