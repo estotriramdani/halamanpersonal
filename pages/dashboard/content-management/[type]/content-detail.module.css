@@ -1,0 +1,13 @@
+.cardWrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  flex-wrap: wrap;
+  flex-direction: column-reverse;
+}
+
+.linkBack {
+  text-decoration: underline;
+  text-align: center;
+  display: block;
+}

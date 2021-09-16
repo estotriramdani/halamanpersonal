@@ -5,9 +5,22 @@ import Image from 'next/image';
 import Theme1TypeCard from './Theme1TypeCard';
 import Theme1Navigation from './Theme1Navigation';
 import { baseUrl } from '../../../../configs/baseUrl';
+import useSWR from 'swr';
+import fetcher from '../../../../utils/helpers/fetcher';
+import Theme1Socmed from './Theme1Socmed';
+import Skeleton from 'react-loading-skeleton';
 
 export default function Theme1Home({ username, userData }) {
-  console.log(userData);
+  const { data: types, errorType } = useSWR(
+    baseUrl.API + 'types/' + username,
+    fetcher
+  );
+
+  const { data: socmeds, errorSocmed } = useSWR(
+    baseUrl.API + 'user/' + username + '/socmed',
+    fetcher
+  );
+
   return (
     <>
       <Theme1Layout title="Home" username={username}>
@@ -18,9 +31,10 @@ export default function Theme1Home({ username, userData }) {
               className="theme-1-profile-photo"
               data-aos="fade-down"
               data-aos-duration="900"
+              style={{ background: '#fff' }}
             >
               <Image
-                src={baseUrl.IMAGE + userData.photo}
+                src={baseUrl.IMAGE + 'profile/' + userData.photo}
                 alt="profile photo"
                 layout="fill"
                 quality={50}
@@ -43,34 +57,25 @@ export default function Theme1Home({ username, userData }) {
               ></p>
               <p className="theme-1-profile-desc-email">{userData.email}</p>
               <div className="theme-1-profile-desc-socmed">
-                <a
-                  target="_blank"
-                  rel="noreferrer"
-                  href={`https://instagram.com/${userData.instagram}`}
-                >
-                  <i className="theme-1-bi bi-instagram"></i>
-                </a>
-                <a
-                  target="_blank"
-                  rel="noreferrer"
-                  href={`https://facebook.com/${userData.facebook}`}
-                >
-                  <i className="theme-1-bi bi-facebook"></i>
-                </a>
-                <a
-                  target="_blank"
-                  rel="noreferrer"
-                  href={`https://github.com/${userData.github}`}
-                >
-                  <i className="theme-1-bi bi-github"></i>
-                </a>
-                <a
-                  target="_blank"
-                  rel="noreferrer"
-                  href={`https://linkedin.com/in/${userData.linkedin}`}
-                >
-                  <i className="theme-1-bi bi-linkedin"></i>
-                </a>
+                {socmeds
+                  ? socmeds.data.map((socmed) => {
+                      return (
+                        <Theme1Socmed
+                          key={socmed.id}
+                          href={socmed.socmed_link}
+                          name={socmed.socmed_name}
+                        />
+                      );
+                    })
+                  : [1, 2, 3, 4].map((skeleton) => (
+                      <Skeleton
+                        key={skeleton}
+                        width={40}
+                        height={40}
+                        circle={true}
+                        style={{ marginRight: '10px' }}
+                      />
+                    ))}
               </div>
             </div>
           </div>
@@ -89,21 +94,20 @@ export default function Theme1Home({ username, userData }) {
             dangerouslySetInnerHTML={{ __html: userData.more_info }}
           ></div>
           <div className="theme-1-content-menu">
-            <Theme1TypeCard
-              pageName="experiences"
-              username={username}
-              icon="award"
-            />
-            <Theme1TypeCard
-              pageName="portfolios"
-              username={username}
-              icon="laptop"
-            />
-            <Theme1TypeCard
-              pageName="educations"
-              username={username}
-              icon="book"
-            />
+            {types
+              ? types.data !== 'NULL'
+                ? types.data.map((type) => {
+                    return (
+                      <Theme1TypeCard
+                        key={type}
+                        pageName={type}
+                        username={username}
+                        icon="app"
+                      />
+                    );
+                  })
+                : ''
+              : ''}
           </div>
         </section>
       </Theme1Layout>

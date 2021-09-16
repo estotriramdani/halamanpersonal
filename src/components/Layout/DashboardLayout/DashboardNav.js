@@ -12,11 +12,6 @@ export default function DashboardNav() {
       href: '/dashboard/content-management',
       icon: 'pencil-fill',
     },
-    {
-      menu: 'DevCor',
-      href: '/dashboard/developer-corner',
-      icon: 'code',
-    },
   ];
 
   return (

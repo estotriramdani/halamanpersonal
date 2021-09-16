@@ -8,6 +8,7 @@ import Gap from '../atoms/Gap';
 import { login } from '../../utils/helpers/auth';
 import { useRouter } from 'next/dist/client/router';
 import AuthAlert from '../atoms/Alert';
+import InputFormik from '../atoms/InputFormik';
 
 export const LoginPage = () => {
   const router = useRouter();
@@ -48,45 +49,27 @@ export const LoginPage = () => {
         {({ errors, touched, isValidating }) => (
           <Form>
             <Gap height={10} />
-            <div className="auth-form-group">
-              <label className="auth-form-control-label">Email</label>
-              <div className="auth-form-control-wrapper">
-                <div className="auth-form-control-icon">
-                  <i className={`bi bi-` + 'envelope'}></i>
-                </div>
-                <Field
-                  name="email"
-                  validate={validateEmail}
-                  className="auth-form-control"
-                  autoComplete="off"
-                  placeholder="Your email"
-                />
-              </div>
-              {errors.email && touched.email && (
-                <div className="auth-form-message">{errors.email}</div>
-              )}
-            </div>
+            <InputFormik
+              errors={errors}
+              label={'Email'}
+              name="email"
+              placeholder="Your email"
+              touched={touched}
+              type="text"
+              validator={validateEmail}
+              icon="envelope"
+            />
             <Gap height={10} />
-            <div className="auth-form-group">
-              <label className="auth-form-control-label">Password</label>
-              <div className="auth-form-control-wrapper">
-                <div className="auth-form-control-icon">
-                  <i className={`bi bi-` + 'key-fill'}></i>
-                </div>
-                <Field
-                  name="password"
-                  validate={validatePassword}
-                  className="auth-form-control"
-                  autoComplete="off"
-                  placeholder="Your password"
-                  type="password"
-                />
-              </div>
-              {errors.password && touched.password && (
-                <div className="auth-form-message">{errors.password}</div>
-              )}
-            </div>
-
+            <InputFormik
+              errors={errors}
+              label={'Password'}
+              name="password"
+              placeholder="Your password"
+              touched={touched}
+              type="password"
+              validator={validatePassword}
+              icon="key"
+            />
             <Gap height={20} />
             <button type="submit" className="button-secondary">
               {isLoading ? 'Please wait...' : 'Login'}

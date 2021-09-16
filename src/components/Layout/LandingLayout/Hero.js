@@ -2,15 +2,12 @@ import React from 'react';
 import Gap from '../../atoms/Gap';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/dist/client/router';
 
 const Hero = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const router = useRouter();
 
   useEffect(() => {
     const user_info = window.localStorage.getItem('user_info');
-    console.log(user_info);
     if (user_info !== null || user_info !== '{}') {
       setIsLoggedIn(true);
     } else {

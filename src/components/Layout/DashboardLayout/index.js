@@ -9,6 +9,7 @@ import DashboardSkeleton from './DashboardSkeleton';
 
 function DashboardLayout({ title, pageTitle, children }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [username, setUsername] = useState('');
   const [token, setToken] = useState('');
   const router = useRouter();
 
@@ -21,6 +22,7 @@ function DashboardLayout({ title, pageTitle, children }) {
         router.push('/auth/login');
       }, 1000);
     } else {
+      setUsername(JSON.parse(user_info).username);
       setTimeout(() => {
         setIsLoggedIn(true);
       }, 1000);
@@ -38,7 +40,7 @@ function DashboardLayout({ title, pageTitle, children }) {
         <div className="dashboard-content">{children}</div>
         <div className="dashboard-nav">
           <div className="dashboard-nav-item">
-            <Link href={'/estotriramdani'}>
+            <Link href={'/' + username}>
               <a
                 style={{
                   width: '100%',

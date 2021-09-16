@@ -1,13 +1,15 @@
+import { Field } from 'formik';
 import React from 'react';
 
-const AuthInput = ({
+const InputFormik = ({
+  errors,
+  touched,
+  validator,
+  name,
   type,
-  label,
   placeholder,
-  id,
+  label,
   icon,
-  message,
-  ...rest
 }) => {
   return (
     <div className="auth-form-group">
@@ -16,17 +18,20 @@ const AuthInput = ({
         <div className="auth-form-control-icon">
           <i className={`bi bi-` + icon}></i>
         </div>
-        <input
+        <Field
+          name={name}
           type={type}
-          id={id}
+          validate={validator}
           className="auth-form-control"
+          autoComplete="off"
           placeholder={placeholder}
-          {...rest}
         />
       </div>
-      <div className="auth-form-message">{message}</div>
+      {errors[name] && touched[name] && (
+        <div className="auth-form-message">{errors[name]}</div>
+      )}
     </div>
   );
 };
 
-export default AuthInput;
+export default InputFormik;

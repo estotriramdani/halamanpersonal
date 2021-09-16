@@ -1,27 +1,28 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import Gap from '../Gap';
-import Skeleton from 'react-loading-skeleton';
-const ItemCard = () => {
+const ItemCard = ({ image, title, subtitle, slug, type }) => {
   return (
-    <Link href="/">
+    <Link href={`/dashboard/${type}/${slug}`}>
       <a className="item-card">
-        <div className="item-card-thumb">
+        <div className="item-card-thumb" style={{ position: 'relative' }}>
           <Image
-            src="http://esto.my.id/files/images/experiences/thumb/automateall.jpg"
-            alt="satu"
+            src={image}
+            alt={title}
             layout="fill"
             objectFit="cover"
+            placeholder="blur"
+            blurDataURL="/img/placeholder-landscape"
           />
         </div>
         <div className="item-card-text-wrapper" style={{ width: '100%' }}>
           <p className="item-card-text-wrapper-title">
-            CV Solusi Automasi Indonesia
+            {title}
             {/* <Skeleton width="100%" /> */}
           </p>
           <Gap height={8} />
           <p className="item-card-text-wrapper-subtitle">
-            Frontend Web Developer - Internship (February 2021 - May 2021)
+            {subtitle}
             {/* <Skeleton count={2} width="100%" /> */}
           </p>
         </div>
