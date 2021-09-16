@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { baseUrl } from '../../configs/baseUrl';
 
 export default function DashboardContentCard({
   image,
@@ -27,7 +28,12 @@ export default function DashboardContentCard({
           overflow: 'hidden',
         }}
       >
-        <Image src={image} alt={title} layout="fill" objectFit="cover" />
+        <Image
+          src={baseUrl.IMAGE + '/content-image/' + image}
+          alt={title}
+          layout="fill"
+          objectFit="cover"
+        />
       </div>
       <div style={{ padding: '10px' }}>
         <p style={{ fontSize: '16px', fontWeight: '700' }}>{title}</p>

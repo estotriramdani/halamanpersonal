@@ -73,10 +73,6 @@ export default function AddContent({
             setTimeout(() => {
               setIsSuccess(false);
               setIsLoading(false);
-              values.subtitle = '';
-              values.title = '';
-              setPhoto('');
-              setDescription('');
             }, 2000);
           }
           setTimeout(() => {

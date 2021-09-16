@@ -6,16 +6,22 @@ import fetcher from '../../src/utils/helpers/fetcher';
 import { baseUrl } from '../../src/configs/baseUrl';
 import NotFoundPage from '../../src/components/pages/NotFoundPage';
 import Preloader from '../../src/components/pages/Preloader/Index';
+import useIsMe from '../../src/utils/hooks/useIsMe';
+import ButtonToDashboard from '../../src/components/atoms/ButtonToDashboard';
 
 function Home() {
   const router = useRouter();
   const username = router.query.username;
-
   const { data, error } = useSWR(baseUrl.API + 'user/' + username, fetcher);
-
+  const isMe = useIsMe();
   if (data) {
     if (data.status === 'success') {
-      return <Theme1Home username={username} userData={data.data} />;
+      return (
+        <>
+          {isMe ? <ButtonToDashboard /> : ''}
+          <Theme1Home username={username} userData={data.data} />
+        </>
+      );
     } else {
       return <NotFoundPage />;
     }

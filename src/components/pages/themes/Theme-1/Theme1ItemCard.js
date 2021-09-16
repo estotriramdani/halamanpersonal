@@ -14,7 +14,7 @@ export default function Theme1ItemCard({
       <div className="theme-1-showcase-item-image">
         <Image
           src={image}
-          alt="/css"
+          alt={title}
           layout="fill"
           blurDataURL="/img/placeholder-landscape.jpg"
           placeholder="blur"

@@ -7,7 +7,7 @@ export default function NotFoundPage() {
         <h1>Error 404</h1>
         <br />
         <p style={{ marginBottom: '10px', marginTop: ' 10px' }}>
-          Page not found
+          Page not found or it takes a while before arrived at destination
         </p>
         <Link href="/">
           <a style={{ textDecoration: 'underline', fontSize: '1.1rem' }}>
