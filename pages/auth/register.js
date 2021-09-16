@@ -1,7 +1,5 @@
 import Gap from '../../src/components/atoms/Gap';
-import AuthInput from '../../src/components/auth/AuthInput';
 import Link from 'next/link';
-import AuthUpload from '../../src/components/auth/AuthUpload';
 import AuthLayout from '../../src/components/Layout/AuthLayout';
 import { RegisterPage } from '../../src/components/auth/Register';
 
