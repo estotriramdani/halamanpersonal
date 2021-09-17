@@ -5,9 +5,24 @@ import IMGTheme from '../../../images/theme-section.png';
 const ThemeSection = () => {
   return (
     <div className="theme-section">
-      <h2>Theme</h2>
+      <h2>Tema</h2>
       <Gap height={14} />
-      <h4>You are free to choose theme you love</h4>
+      <style jsx>{`
+        h4 {
+          width: 100%;
+          margin: auto;
+        }
+        @media (min-width: 768px) {
+          h4 {
+            width: 50%;
+          }
+        }
+      `}</style>
+      <h4>
+        Kami menyediakan beberapa tema untuk Anda gunakan. Silakan pilih yang
+        sesuai dengan Anda. Dan, tentunya kami akan memperbarui kesediaan tema
+        pada HalamanPersonal
+      </h4>
       <div className="theme-image">
         <Image
           src={IMGTheme}

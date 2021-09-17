@@ -4,6 +4,7 @@ import Gap from '../../atoms/Gap';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/dist/client/router';
 import DashboardSkeleton from '../DashboardLayout/DashboardSkeleton';
+import { metaDescription } from '../../../data/staticDataString';
 
 const AuthLayout = ({ title, children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -25,7 +26,6 @@ const AuthLayout = ({ title, children }) => {
         <div className="auth-wrapper">
           <Head>
             <title>{title} - HalamanPersonal</title>
-            <meta name="description" content="....." />
           </Head>
           <div className="auth-content">
             <h1 className="auth-h1">{title}</h1>

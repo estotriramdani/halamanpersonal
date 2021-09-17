@@ -10,7 +10,6 @@ function Theme1ListCard({ username, type }) {
     baseUrl.API + 'contents/' + username + '/' + type,
     fetcher
   );
-  console.log(items);
   return items
     ? items.data.map((item) => {
         return (

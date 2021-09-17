@@ -1,16 +1,16 @@
 import { baseUrl } from '../../../configs/baseUrl';
 
-const createContent = async (
+const updateContent = async (
   token,
   username,
   description,
   forms,
   photo,
-  slug = ''
+  slug
 ) => {
   const myHeaders = new Headers();
   myHeaders.append('Accept', 'application/json');
-  myHeaders.append('Authorization', `Bearer ${token}`);
+  myHeaders.append('Authorization', 'Bearer ' + token);
 
   const formdata = new FormData();
   formdata.append('type', forms.type);
@@ -30,7 +30,10 @@ const createContent = async (
   };
 
   try {
-    const response = await fetch(baseUrl.API + 'contents', requestOptions);
+    const response = fetch(
+      baseUrl.API + 'contents/' + slug + '?_method=PUT',
+      requestOptions
+    );
     const responseJson = await response.json();
     return responseJson;
   } catch (error) {
@@ -38,4 +41,4 @@ const createContent = async (
   }
 };
 
-export default createContent;
+export default updateContent;

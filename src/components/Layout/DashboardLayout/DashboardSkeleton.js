@@ -8,7 +8,6 @@ export default function DashboardSkeleton({ title }) {
     <div className="dashboard-wrapper">
       <Head>
         <title>{title}</title>
-        <meta name="description" content="....." />
       </Head>
       <div className="dashboard-nav">
         <p style={{ margin: 'auto', width: '100%' }}>

@@ -13,7 +13,6 @@ export default function Theme1ShowCaseDetail({ username, type, slug }) {
     pageTitle = type[0].toUpperCase() + type.substr(1);
   }
   const { data } = useSWR(`${baseUrl.API}contents/${username}/${type}/${slug}`);
-  console.log(data);
 
   return (
     <Theme1Layout title={pageTitle} username={username}>

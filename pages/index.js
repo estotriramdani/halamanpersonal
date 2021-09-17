@@ -3,15 +3,6 @@ import React, { lazy } from 'react';
 import Head from 'next/head';
 import Gap from '../src/components/atoms/Gap';
 import dynamic from 'next/dynamic';
-import Skeleton from 'react-loading-skeleton';
-// import {
-//   Hero,
-//   CTASection,
-//   FeatureSection,
-//   Footer,
-//   TestimonialSection,
-//   ThemeSection,
-// } from '../src/components/Layout/LandingLayout';
 const Hero = dynamic(() =>
   import('../src/components/Layout/LandingLayout/Hero')
 );
@@ -36,10 +27,6 @@ export default function Home() {
     <div style={{ backgroundClip: '#ffffff' }}>
       <Head>
         <title>HalamanPersonal.my.id</title>
-        <meta
-          name="description"
-          content="Halaman Personal merupakan sebuah plaform untuk halaman personal"
-        />
         <link rel="icon" href="/favicon.ico" />
         <link
           rel="stylesheet"

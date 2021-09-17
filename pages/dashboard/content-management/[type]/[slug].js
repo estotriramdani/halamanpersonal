@@ -9,7 +9,10 @@ import useQuery from '../../../../src/utils/hooks/useQuery';
 import fetcher from '../../../../src/utils/helpers/fetcher';
 import styles from './content-detail.module.css';
 import { useEffect, useState } from 'react';
-import { deleteContent } from '../../../../src/utils/helpers/dashboard';
+import {
+  deleteContent,
+  updateContent,
+} from '../../../../src/utils/helpers/dashboard';
 import AlertFloating from '../../../../src/components/atoms/AlertFloating';
 import { useRouter } from 'next/dist/client/router';
 
@@ -76,6 +79,7 @@ export default function DashboardDetailContent() {
         buttonTitle="Perbarui Konten"
         desc={initialValues.desc}
         uploadLabel="Pilih cover (jika ingin mengganti)"
+        handleFunction={updateContent}
       />
       <hr />
       <Gap height="10px" />

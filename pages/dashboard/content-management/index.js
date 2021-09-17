@@ -8,6 +8,7 @@ import useUserInfo from '../../../src/utils/hooks/useUserInfo';
 import Link from 'next/link';
 import styles from './content-management.module.css';
 import fetcher from '../../../src/utils/helpers/fetcher';
+import { createContent } from '../../../src/utils/helpers/dashboard';
 
 export default function Dashboard() {
   const { userInfo } = useUserInfo();
@@ -32,6 +33,7 @@ export default function Dashboard() {
           type: '',
         }}
         buttonTitle="Add Content"
+        handleFunction={createContent}
       />
       <hr />
       <Gap height="30px" />

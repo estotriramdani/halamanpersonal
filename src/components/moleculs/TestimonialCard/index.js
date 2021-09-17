@@ -1,13 +1,13 @@
-import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { baseUrl } from '../../../configs/baseUrl';
 
-const TestimonialCard = () => {
+const TestimonialCard = ({ photo, username, name, headline }) => {
   return (
     <div className="testimonial-card">
       <div className="testimonial-card-photo">
         <Image
-          src="https://estotriramdani.github.io/img/photo-1x1.jpg"
+          src={baseUrl.IMAGE + 'profile/' + photo}
           objectFit="cover"
           layout="fill"
           alt="Photo"
@@ -15,11 +15,11 @@ const TestimonialCard = () => {
         />
       </div>
       <div className="testimonial-card-text">
-        <p className="testimonial-card-text-name">Esto Triramdani N</p>
-        <p className="testimonial-card-text-profession">Front-end Engineer</p>
-        <Link href="/estotriramdani">
+        <p className="testimonial-card-text-name">{name}</p>
+        <p className="testimonial-card-text-profession">{headline}</p>
+        <Link href={'/' + username}>
           <a className="testimonial-card-text-link">
-            halamanpersonal.id/estotriramdani
+            halamanpersonal.id/{username}
           </a>
         </Link>
       </div>

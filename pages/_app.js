@@ -5,13 +5,23 @@ import 'nprogress/nprogress.css';
 import 'react-trix/dist/react-trix';
 import '../styles/utils/trix.css';
 import '../styles/theme/theme-1.css';
+import Head from 'next/head';
+import { metaDescription, metaKeyword } from '../src/data/staticDataString';
 
 Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />;
+  return (
+    <>
+      <Head>
+        <meta name="description" content={metaDescription} />
+        <meta name="keywords" content={metaKeyword} />
+      </Head>
+      <Component {...pageProps} />
+    </>
+  );
 }
 
 export default MyApp;
