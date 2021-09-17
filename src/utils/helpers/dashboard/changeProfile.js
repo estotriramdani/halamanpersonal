@@ -1,7 +1,6 @@
 import { baseUrl } from '../../../configs/baseUrl';
 
 const changeProfile = async (forms, introduction, moreInfo, photo, token) => {
-  console.log(forms);
   const myHeaders = new Headers();
   myHeaders.append('Accept', 'application/json');
   myHeaders.append('Authorization', `Bearer ${token}`);
@@ -35,8 +34,7 @@ const changeProfile = async (forms, introduction, moreInfo, photo, token) => {
       requestOptions
     );
     const responseJson = await response.json();
-    console.log(responseJson);
-    return 'success';
+    return responseJson;
   } catch (error) {
     return error;
   }

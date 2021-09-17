@@ -19,6 +19,7 @@ function Profile() {
   const [isLoading, setIsLoading] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [isFailed, setIsFailed] = useState(false);
   const [userInfo, setUserInfo] = useState({});
   const [token, setToken] = useState('');
   const [photo, setPhoto] = useState({});
@@ -63,6 +64,14 @@ function Profile() {
       ) : (
         ''
       )}
+      {isFailed ? (
+        <AlertFloating
+          message="Gagal. Pastikan username dan email bersifat unik."
+          type={'danger'}
+        />
+      ) : (
+        ''
+      )}
       {isLoaded ? (
         <Formik
           initialValues={profileFieldInitialValueGenerator(userInfo)}
@@ -75,15 +84,20 @@ function Profile() {
               photo,
               token
             );
-            if (updateProfile === 'success') {
+            if (updateProfile.status === 'succes') {
               setIsLoading(false);
               setIsSuccess(true);
               scrollTo(top);
               setTimeout(() => {
                 setIsSuccess(false);
-              }, 2500);
+              }, 2800);
+            } else {
+              setIsFailed(true);
+              scrollTo(top);
+              setTimeout(() => {
+                setIsFailed(false);
+              }, 2800);
             }
-            console.log(updateProfile);
           }}
         >
           {({ errors, touched, isValidating }) => (

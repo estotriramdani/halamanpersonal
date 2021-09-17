@@ -6,7 +6,6 @@ const useReadyContent = (type, username) => {
   const [isReadyContent, setIsReadyContent] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const { data } = useSWR(baseUrl.API + 'contents/' + username + '/' + type);
-  console.log(data);
   useEffect(() => {
     if (data) {
       if (data.data.length <= 0) {
@@ -15,9 +14,6 @@ const useReadyContent = (type, username) => {
         setIsReadyContent(true);
       }
     }
-    // return () => {
-    //   setIsLoaded(true);
-    // };
   }, [data, isLoaded]);
   return isReadyContent;
 };

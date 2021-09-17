@@ -6,13 +6,25 @@ const FeatureSection = () => {
   return (
     <div className="feature-section">
       <div className="heading-group-wrapper">
-        <h3>Just few clicks</h3>
+        <h3>Hanya beberapa klik</h3>
         <Gap height={14} />
-        <h2>Features</h2>
+        <h2>Fitur</h2>
         <Gap height={14} />
+        <style jsx>{`
+          h4 {
+            width: 100%;
+            margin: auto;
+          }
+          @media (min-width: 768px) {
+            h4 {
+              width: 50%;
+            }
+          }
+        `}</style>
         <h4>
-          Build personal page easily. You can check the example, if you meet any
-          problem.
+          Bangun personal webiste dengan mudah. Jika menemui kesulitan, Anda
+          bisa melihat contoh yang sudah ada. Kami akan selalu memperbarui
+          fitur-fitur yang tersedia!
         </h4>
       </div>
       <div className="feature-card-wrapper">

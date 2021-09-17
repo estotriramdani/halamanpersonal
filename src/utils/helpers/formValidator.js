@@ -42,25 +42,24 @@ export function validatePassword(value) {
   if (!value) {
     error = 'Password is required';
   }
-  // if (
-  //   !validator.isStrongPassword(value, {
-  //     minLength: 8,
-  //     minLowercase: 1,
-  //     minUppercase: 1,
-  //     minNumbers: 1,
-  //     minSymbols: 0,
-  //     returnScore: false,
-  //     pointsPerUnique: 1,
-  //     pointsPerRepeat: 0.5,
-  //     pointsForContainingLower: 0,
-  //     pointsForContainingUpper: 0,
-  //     pointsForContainingNumber: 0,
-  //     pointsForContainingSymbol: 0,
-  //   })
-  // ) {
-  //   console.log();
-  //   error =
-  //     'Password should contains at least 8 characters with 1 lowercase, 1 uppercase, and 1 number';
-  // }
+  if (
+    !validator.isStrongPassword(value, {
+      minLength: 8,
+      minLowercase: 1,
+      minUppercase: 1,
+      minNumbers: 1,
+      minSymbols: 0,
+      returnScore: false,
+      pointsPerUnique: 1,
+      pointsPerRepeat: 0.5,
+      pointsForContainingLower: 0,
+      pointsForContainingUpper: 0,
+      pointsForContainingNumber: 0,
+      pointsForContainingSymbol: 0,
+    })
+  ) {
+    error =
+      'Password should contains at least 8 characters with 1 lowercase, 1 uppercase, and 1 number';
+  }
   return error;
 }

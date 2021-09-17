@@ -34,7 +34,6 @@ function DashboardLayout({ title, pageTitle, children }) {
       <div className="dashboard-wrapper">
         <Head>
           <title>{pageTitle} - Dashboard</title>
-          <meta name="description" content="....." />
         </Head>
         <DashboardNav />
         <div className="dashboard-content">{children}</div>

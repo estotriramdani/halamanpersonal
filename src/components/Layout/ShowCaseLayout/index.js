@@ -8,7 +8,6 @@ function ShowCaseLayout({ title, metaDescription = 'meta', children }) {
     <div>
       <Head>
         <title>{title}</title>
-        <meta name="description" content={metaDescription} />
         <link rel="icon" href="/favicon.ico" />
         <link
           rel="stylesheet"

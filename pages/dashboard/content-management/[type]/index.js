@@ -18,8 +18,6 @@ export default function Type() {
   const { data: contents } = useSWR(
     baseUrl.API + 'contents/' + userInfo.username + '/' + type
   );
-
-  console.log(contents);
   return (
     <DashboardLayout title="Content Management" pageTitle="Content Management">
       <h2 className="dashboard-h2">

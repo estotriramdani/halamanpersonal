@@ -19,6 +19,7 @@ export default function AddContent({
   buttonTitle,
   desc = '',
   uploadLabel = 'Pilih photo cover (optional)',
+  handleFunction,
 }) {
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -30,6 +31,8 @@ export default function AddContent({
     setDescription(e);
   };
 
+  const slug = router.query.slug || '';
+
   const handleChangePhoto = (e) => {
     const file = e.target.files[0];
     setPhoto(file);
@@ -40,7 +43,7 @@ export default function AddContent({
   return (
     <div>
       {isSuccess ? (
-        <AlertFloating message="Konten berhasil ditambahkan" type={'success'} />
+        <AlertFloating message="Konten berhasil disimpan" type={'success'} />
       ) : (
         ''
       )}
@@ -61,12 +64,13 @@ export default function AddContent({
         }}
         onSubmit={async (values, { setSubmitting }) => {
           setIsLoading(true);
-          const request = await createContent(
+          const request = await handleFunction(
             token,
             userInfo.username,
             description,
             values,
-            photo
+            photo,
+            slug
           );
           if (request) {
             setIsSuccess(true);
