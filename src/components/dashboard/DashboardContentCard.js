@@ -29,7 +29,7 @@ export default function DashboardContentCard({
         }}
       >
         <Image
-          src={baseUrl.IMAGE + '/content-image/' + image}
+          src={baseUrl.IMAGE + 'content-images/' + image}
           alt={title}
           layout="fill"
           objectFit="cover"

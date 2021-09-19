@@ -5,13 +5,13 @@ import Gap from '../atoms/Gap';
 import useSWR from 'swr';
 import fetcher from '../../utils/helpers/fetcher';
 import { baseUrl } from '../../configs/baseUrl';
-import { createContent } from '../../utils/helpers/dashboard';
 import useUserInfo from '../../utils/hooks/useUserInfo';
 import AlertFloating from '../atoms/AlertFloating';
 import InputFormik from '../atoms/InputFormik';
 import TextareaFormik from '../atoms/TextareaFormik';
 import InputUpload from '../atoms/InputUpload';
 import { useRouter } from 'next/dist/client/router';
+import Image from 'next/image';
 
 export default function AddContent({
   initialValues,
@@ -47,6 +47,27 @@ export default function AddContent({
       ) : (
         ''
       )}
+      {image ? (
+        <div
+          style={{
+            position: 'relative',
+            width: '100%',
+            height: '200px',
+            borderRadius: '5px',
+            overflow: 'hidden',
+          }}
+        >
+          <Image
+            src={baseUrl.IMAGE + 'content-images/' + image}
+            alt={initialValues.title}
+            layout="fill"
+            objectFit="cover"
+            quality={50}
+          />
+        </div>
+      ) : (
+        ''
+      )}
       <Formik
         initialValues={initialValues}
         validate={(values) => {
@@ -78,6 +99,8 @@ export default function AddContent({
               setIsSuccess(false);
               setIsLoading(false);
             }, 2000);
+          } else {
+            console.log(request);
           }
           setTimeout(() => {
             router.push('/dashboard/content-management/' + values.type);

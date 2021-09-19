@@ -34,9 +34,11 @@ const updateContent = async (
       baseUrl.API + 'contents/' + slug + '?_method=PUT',
       requestOptions
     );
+    console.log(response);
     const responseJson = await response.json();
     return responseJson;
   } catch (error) {
+    console.log(error);
     return error;
   }
 };

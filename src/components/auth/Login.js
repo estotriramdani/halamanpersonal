@@ -56,7 +56,6 @@ export const LoginPage = () => {
               placeholder="Your email"
               touched={touched}
               type="text"
-              validator={validateEmail}
               icon="envelope"
             />
             <Gap height={10} />
@@ -67,7 +66,6 @@ export const LoginPage = () => {
               placeholder="Your password"
               touched={touched}
               type="password"
-              validator={validatePassword}
               icon="key"
             />
             <Gap height={20} />

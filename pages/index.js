@@ -18,9 +18,6 @@ const Footer = dynamic(() =>
 const TestimonialSection = dynamic(() =>
   import('../src/components/Layout/LandingLayout/TestimonialSection')
 );
-const ThemeSection = dynamic(() =>
-  import('../src/components/Layout/LandingLayout/ThemeSection')
-);
 
 export default function Home() {
   return (
@@ -38,8 +35,6 @@ export default function Home() {
         <Gap height={70} />
         <FeatureSection />
         <Gap height={70} />
-        <ThemeSection />
-        <Gap height={40} />
         <CTASection />
         <Gap height={40} />
         <TestimonialSection />

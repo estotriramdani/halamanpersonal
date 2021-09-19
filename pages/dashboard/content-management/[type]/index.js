@@ -33,7 +33,7 @@ export default function Type() {
             return (
               <DashboardContentCard
                 key={content.slug}
-                image={baseUrl.IMAGE + content.img}
+                image={content.img}
                 slug={content.slug}
                 subtitle={content.subtitle}
                 title={content.title}
