@@ -22,21 +22,29 @@ export default function Theme1ShowCaseDetail({ username, type, slug }) {
           {data ? (
             <>
               <div className="theme-1-showcase-hero-detail-cover">
-                <Image
-                  src={baseUrl.IMAGE + 'content-image/' + data.data.img}
-                  alt={data.data.title}
-                  data-aos="zoom-in-up"
-                  data-aos-duration="1200"
-                  placeholder="blur"
-                  blurDataURL="/img/placeholder-landscape.jpg"
-                  layout="fill"
-                />
+                {data.data.img ? (
+                  <Image
+                    src={
+                      data.data.img.substr(0, 5) !== 'https'
+                        ? '/img/placeholder-landscape.jpg'
+                        : data.data.img
+                    }
+                    alt={data.data.title}
+                    data-aos="zoom-in-up"
+                    data-aos-duration="1200"
+                    placeholder="blur"
+                    blurDataURL="/img/placeholder-landscape.jpg"
+                    layout="fill"
+                  />
+                ) : (
+                  ''
+                )}
+
                 <a
-                  href={baseUrl.IMAGE + 'content-image/' + data.data.img}
+                  href={data.data.img}
                   target="_blank"
                   rel="noreferrer"
-                  className="theme-1-showcase-hero-detail-cover-link"
-                >
+                  className="theme-1-showcase-hero-detail-cover-link">
                   See original image
                 </a>
               </div>
@@ -50,13 +58,11 @@ export default function Theme1ShowCaseDetail({ username, type, slug }) {
                 <hr className="theme-1-showcase-hero-detail-text-breakline" />
                 <div
                   className="theme-1-showcase-hero-detail-text-desc"
-                  dangerouslySetInnerHTML={{ __html: data.data.desc }}
-                ></div>
+                  dangerouslySetInnerHTML={{ __html: data.data.desc }}></div>
                 <Link href={`/${username}/${type}`}>
                   <a
                     className="theme-1-showcase-hero-detail-text-hashtag"
-                    style={{ color: '#71798f', textDecoration: 'underline' }}
-                  >
+                    style={{ color: '#71798f', textDecoration: 'underline' }}>
                     #{type}
                   </a>
                 </Link>
@@ -74,8 +80,7 @@ export default function Theme1ShowCaseDetail({ username, type, slug }) {
         className="theme-1-light-section"
         id="light-section"
         data-aos="fade-in"
-        data-aos-duration="2000"
-      >
+        data-aos-duration="2000">
         <Theme1ListCard type={type} username={username} />
         <div style={{ height: '15px' }}></div>
         <Link href={`/${username}`}>

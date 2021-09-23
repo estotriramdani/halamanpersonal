@@ -17,7 +17,7 @@ function Theme1ListCard({ username, type }) {
             key={item.id}
             username={username}
             type={item.type}
-            image={baseUrl.IMAGE + 'content-image/' + item.image}
+            image={item.img}
             slug={item.slug}
             title={item.title}
             subtitle={item.subtitle}

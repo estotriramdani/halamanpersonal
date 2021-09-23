@@ -1,5 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
-import Image from 'next/image';
 
 export default function Theme1ItemCard({
   username,
@@ -12,12 +12,10 @@ export default function Theme1ItemCard({
   return (
     <div className="theme-1-showcase-item" style={{ marginBottom: '25px' }}>
       <div className="theme-1-showcase-item-image">
-        <Image
+        <img
           src={image}
           alt={title}
-          layout="fill"
-          blurDataURL="/img/placeholder-landscape.jpg"
-          placeholder="blur"
+          style={{ objectFit: 'cover', width: '100%', height: '100%' }}
         />
       </div>
       <div className="theme-1-showcase-item-desc">
