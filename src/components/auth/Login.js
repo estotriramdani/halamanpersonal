@@ -1,9 +1,5 @@
 import React, { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
-import {
-  validateEmail,
-  validatePassword,
-} from '../../utils/helpers/formValidator';
 import Gap from '../atoms/Gap';
 import { login } from '../../utils/helpers/auth';
 import { useRouter } from 'next/dist/client/router';
