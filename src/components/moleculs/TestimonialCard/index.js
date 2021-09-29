@@ -6,13 +6,21 @@ const TestimonialCard = ({ photo, username, name, headline }) => {
   return (
     <div className="testimonial-card">
       <div className="testimonial-card-photo">
-        <Image
-          src={baseUrl.IMAGE + 'profile/' + photo}
-          objectFit="cover"
-          layout="fill"
-          alt="Photo"
-          quality={25}
-        />
+        {photo ? (
+          <Image
+            src={
+              photo.substr(0, 5) !== 'https'
+                ? '/img/placeholder-landscape.jpg'
+                : photo
+            }
+            objectFit="cover"
+            layout="fill"
+            alt="Photo"
+            quality={25}
+          />
+        ) : (
+          ''
+        )}
       </div>
       <div className="testimonial-card-text">
         <p className="testimonial-card-text-name">{name}</p>

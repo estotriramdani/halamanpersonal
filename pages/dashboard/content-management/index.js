@@ -1,6 +1,5 @@
 import Gap from '../../../src/components/atoms/Gap';
 import DashboardLayout from '../../../src/components/Layout/DashboardLayout';
-import useScript from '../../../src/utils/hooks/useScript';
 import AddContent from '../../../src/components/dashboard/AddContent';
 import useSWR from 'swr';
 import { baseUrl } from '../../../src/configs/baseUrl';
@@ -16,6 +15,7 @@ export default function Dashboard() {
     baseUrl.API + 'types/' + userInfo.username,
     fetcher
   );
+  console.log(types);
   return (
     <DashboardLayout title="Content Management" pageTitle="Content Management">
       <h2 className="dashboard-h2">Content Management</h2>

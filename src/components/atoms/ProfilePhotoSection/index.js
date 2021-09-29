@@ -10,7 +10,7 @@ const ProfilePhotoSection = ({ photo, onChange }) => {
       <div className="profile-photo-preview">
         <Image
           src={
-            baseUrl.IMAGE + 'profile/' + photo ||
+            'https://halamanpersonal-images.my.id/' + photo ||
             'https://dummyimage.com/200x200/dedede/020312.png&text=No+Image'
           }
           layout="fill"

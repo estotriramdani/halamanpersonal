@@ -9,6 +9,8 @@ export default function DashboardContentCard({
   slug,
   type,
 }) {
+  const imagePreview =
+    image.substr(0, 5) === 'https' ? image : '/img/placeholder-landscape.jpg';
   return (
     <div
       style={{
@@ -18,22 +20,15 @@ export default function DashboardContentCard({
         borderRadius: '5px',
         boxShadow: '2px 2px 16px rgba(0, 0, 0, 0.04)',
         overflow: 'hidden',
-      }}
-    >
+      }}>
       <div
         style={{
           position: 'relative',
           width: '100%',
           height: '150px',
           overflow: 'hidden',
-        }}
-      >
-        <Image
-          src={baseUrl.IMAGE + '/content-image/' + image}
-          alt={title}
-          layout="fill"
-          objectFit="cover"
-        />
+        }}>
+        <Image src={imagePreview} alt={title} layout="fill" objectFit="cover" />
       </div>
       <div style={{ padding: '10px' }}>
         <p style={{ fontSize: '16px', fontWeight: '700' }}>{title}</p>
@@ -54,8 +49,7 @@ export default function DashboardContentCard({
             hover: {
               background: 'red',
             },
-          }}
-        >
+          }}>
           Detail
         </a>
       </Link>

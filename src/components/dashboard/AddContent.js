@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable jsx-a11y/alt-text */
 import { Field, Form, Formik } from 'formik';
 import React, { useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
@@ -5,26 +7,26 @@ import Gap from '../atoms/Gap';
 import useSWR from 'swr';
 import fetcher from '../../utils/helpers/fetcher';
 import { baseUrl } from '../../configs/baseUrl';
-import { createContent } from '../../utils/helpers/dashboard';
 import useUserInfo from '../../utils/hooks/useUserInfo';
 import AlertFloating from '../atoms/AlertFloating';
 import InputFormik from '../atoms/InputFormik';
 import TextareaFormik from '../atoms/TextareaFormik';
-import InputUpload from '../atoms/InputUpload';
 import { useRouter } from 'next/dist/client/router';
+import Image from 'next/image';
+import UploadInstrusction from '../atoms/UploadInstruction';
 
 export default function AddContent({
   initialValues,
   image,
   buttonTitle,
   desc = '',
-  uploadLabel = 'Pilih photo cover (optional)',
+  uploadLabel = 'Link photo cover (optional)',
   handleFunction,
 }) {
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const { data: types, error } = useSWR(baseUrl.API + 'types', fetcher);
-  const [photo, setPhoto] = useState({});
+  const [photo, setPhoto] = useState('');
   const [description, setDescription] = useState(desc);
   const router = useRouter();
   const handleChangeDescription = (e) => {
@@ -34,16 +36,40 @@ export default function AddContent({
   const slug = router.query.slug || '';
 
   const handleChangePhoto = (e) => {
-    const file = e.target.files[0];
-    setPhoto(file);
+    setPhoto(e.target.value);
   };
 
   const { userInfo, token } = useUserInfo();
+  let imagePreview;
+  if (image) {
+    imagePreview =
+      image.substr(0, 5) === 'https' ? image : '/img/placeholder-landscape.jpg';
+  }
 
   return (
     <div>
       {isSuccess ? (
         <AlertFloating message="Konten berhasil disimpan" type={'success'} />
+      ) : (
+        ''
+      )}
+      {image ? (
+        <div
+          style={{
+            position: 'relative',
+            width: '100%',
+            height: '200px',
+            borderRadius: '5px',
+            overflow: 'hidden',
+          }}>
+          <Image
+            src={imagePreview}
+            alt={initialValues.title}
+            layout="fill"
+            objectFit="cover"
+            quality={50}
+          />
+        </div>
       ) : (
         ''
       )}
@@ -78,6 +104,8 @@ export default function AddContent({
               setIsSuccess(false);
               setIsLoading(false);
             }, 2000);
+          } else {
+            console.log(request);
           }
           setTimeout(() => {
             router.push('/dashboard/content-management/' + values.type);
@@ -85,8 +113,7 @@ export default function AddContent({
           setTimeout(() => {
             scrollTo(top);
           }, 500);
-        }}
-      >
+        }}>
         {({ errors, touched, isValidating }) => (
           <Form>
             <Gap height={10} />
@@ -122,16 +149,14 @@ export default function AddContent({
                   padding: '10px',
                   textTransform: 'capitalize',
                 }}
-                component="select"
-              >
+                component="select">
                 {types ? (
                   types.data.map((type) => {
                     return (
                       <option
                         value={type.name}
                         key={type.id}
-                        style={{ textTransform: 'capitalize' }}
-                      >
+                        style={{ textTransform: 'capitalize' }}>
                         {type.name}
                       </option>
                     );
@@ -151,18 +176,49 @@ export default function AddContent({
               value={description}
             />
             <Gap height={20} />
-            <InputUpload
-              label={uploadLabel}
-              name="photo"
-              onChange={(e) => handleChangePhoto(e)}
-              accept={'image/*'}
-            />
+            <div className="auth-form-group">
+              <label className="auth-form-control-label">{uploadLabel}</label>
+              <div className="auth-form-control-wrapper">
+                <div className="auth-form-control-icon">
+                  <i className={`bi bi-` + 'image'}></i>
+                </div>
+                <input
+                  className="auth-form-control"
+                  type="text"
+                  autoComplete="off"
+                  placeholder={
+                    'https://halamanpersonal-images.my.id/images/...'
+                  }
+                  onChange={(e) => handleChangePhoto(e)}
+                />
+              </div>
+              <UploadInstrusction />
+              <div>
+                {photo.length ? (
+                  <>
+                    <Gap height={15} />
+                    <img
+                      src={photo}
+                      alt="Jika link sudah sesuai, pratinjau gambar akan muncul di sini"
+                      className="image-preivew"
+                      style={{
+                        width: '100%',
+                        height: '200px',
+                        objectFit: 'contain',
+                        borderRadius: '5px',
+                      }}
+                    />
+                  </>
+                ) : (
+                  ''
+                )}
+              </div>
+            </div>
             <Gap height={20} />
             <button
               type="submit"
               className="button-secondary"
-              disabled={isValidating}
-            >
+              disabled={isValidating}>
               {isLoading ? 'Please wait...' : buttonTitle}
             </button>
           </Form>

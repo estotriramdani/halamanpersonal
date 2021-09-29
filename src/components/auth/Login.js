@@ -1,9 +1,5 @@
 import React, { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
-import {
-  validateEmail,
-  validatePassword,
-} from '../../utils/helpers/formValidator';
 import Gap from '../atoms/Gap';
 import { login } from '../../utils/helpers/auth';
 import { useRouter } from 'next/dist/client/router';
@@ -56,7 +52,6 @@ export const LoginPage = () => {
               placeholder="Your email"
               touched={touched}
               type="text"
-              validator={validateEmail}
               icon="envelope"
             />
             <Gap height={10} />
@@ -67,7 +62,6 @@ export const LoginPage = () => {
               placeholder="Your password"
               touched={touched}
               type="password"
-              validator={validatePassword}
               icon="key"
             />
             <Gap height={20} />

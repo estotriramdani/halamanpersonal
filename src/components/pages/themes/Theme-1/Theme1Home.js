@@ -34,9 +34,10 @@ export default function Theme1Home({ username, userData }) {
               style={{ background: '#fff' }}
             >
               <Image
-                src={baseUrl.IMAGE + 'profile/' + userData.photo}
+                src={userData.photo}
                 alt="profile photo"
                 layout="fill"
+                objectFit="cover"
                 quality={50}
                 blurDataURL="/img/placeholder-landscape.jpg"
                 placeholder="blur"

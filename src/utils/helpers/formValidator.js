@@ -34,6 +34,9 @@ export async function validateUsername(value) {
   ) {
     error = 'Username should be at least 6 characters ';
   }
+  if (!validator.matches(value, '^[a-zA-Z0-9_]*$')) {
+    error = 'Username is invalid';
+  }
   return error;
 }
 

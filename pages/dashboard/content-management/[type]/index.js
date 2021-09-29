@@ -18,6 +18,7 @@ export default function Type() {
   const { data: contents } = useSWR(
     baseUrl.API + 'contents/' + userInfo.username + '/' + type
   );
+  console.log(contents);
   return (
     <DashboardLayout title="Content Management" pageTitle="Content Management">
       <h2 className="dashboard-h2">
@@ -33,7 +34,7 @@ export default function Type() {
             return (
               <DashboardContentCard
                 key={content.slug}
-                image={baseUrl.IMAGE + content.img}
+                image={content.img}
                 slug={content.slug}
                 subtitle={content.subtitle}
                 title={content.title}

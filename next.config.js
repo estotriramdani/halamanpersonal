@@ -6,6 +6,7 @@ module.exports = {
       'estotriramdani.github.io',
       'dummyimage.com',
       'halamanpersonal-backend.herokuapp.com',
+      'halamanpersonal-images.my.id',
     ],
   },
 };

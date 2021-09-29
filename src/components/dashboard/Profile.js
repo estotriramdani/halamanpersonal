@@ -1,9 +1,9 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from 'react';
 import { Form, Formik } from 'formik';
 import Gap from '../atoms/Gap';
 import axios from 'axios';
 import { baseUrl } from '../../configs/baseUrl';
-import useScript from '../../utils/hooks/useScript';
 import { changeProfile } from '../../utils/helpers/dashboard';
 import AlertFloating from '../atoms/AlertFloating';
 import InputFormik from '../atoms/InputFormik';
@@ -12,8 +12,9 @@ import {
   profileInputField,
 } from './profileInputField';
 import TextareaFormik from '../atoms/TextareaFormik';
-import ProfilePhotoSection from '../atoms/ProfilePhotoSection';
 import ProfileSkeleton from './ProfileSkeleton';
+import ProfilePhotoPreview from '../atoms/ProfilePhotoPreview';
+import UploadInstrusction from '../atoms/UploadInstruction';
 
 function Profile() {
   const [isLoading, setIsLoading] = useState(false);
@@ -22,13 +23,12 @@ function Profile() {
   const [isFailed, setIsFailed] = useState(false);
   const [userInfo, setUserInfo] = useState({});
   const [token, setToken] = useState('');
-  const [photo, setPhoto] = useState({});
+  const [photo, setPhoto] = useState('');
   const [introduction, setIntroduction] = useState('');
   const [moreInfo, setMoreInfo] = useState('');
 
   const handleChangePhoto = (e) => {
-    const file = e.target.files[0];
-    setPhoto(file);
+    setPhoto(e.target.value);
   };
 
   const handleChangeIntroduction = (e, t) => {
@@ -50,28 +50,31 @@ function Profile() {
           setUserInfo(response.data.data);
           setMoreInfo(response.data.data.more_info);
           setIntroduction(response.data.data.introduction);
+          setPhoto(response.data.data.photo);
+          console.log(response.data.data.photo);
         })
         .then(() => {
           setIsLoaded(true);
         });
     }
   }, [isLoaded, token]);
-
   return (
     <div>
-      {isSuccess ? (
-        <AlertFloating message="Profile updated!" type={'success'} />
-      ) : (
-        ''
-      )}
-      {isFailed ? (
-        <AlertFloating
-          message="Gagal. Pastikan username dan email bersifat unik."
-          type={'danger'}
-        />
-      ) : (
-        ''
-      )}
+      <>
+        {isSuccess ? (
+          <AlertFloating message="Profile updated!" type={'success'} />
+        ) : (
+          ''
+        )}
+        {isFailed ? (
+          <AlertFloating
+            message="Gagal. Pastikan username dan email bersifat unik."
+            type={'danger'}
+          />
+        ) : (
+          ''
+        )}
+      </>
       {isLoaded ? (
         <Formik
           initialValues={profileFieldInitialValueGenerator(userInfo)}
@@ -84,7 +87,7 @@ function Profile() {
               photo,
               token
             );
-            if (updateProfile.status === 'succes') {
+            if (updateProfile.status === 'success') {
               setIsLoading(false);
               setIsSuccess(true);
               scrollTo(top);
@@ -98,14 +101,14 @@ function Profile() {
                 setIsFailed(false);
               }, 2800);
             }
-          }}
-        >
+          }}>
           {({ errors, touched, isValidating }) => (
             <Form>
-              <ProfilePhotoSection
+              <ProfilePhotoPreview
                 onChange={(e) => handleChangePhoto(e)}
-                photo={userInfo.photo}
+                photo={photo}
               />
+              <UploadInstrusction />
               <Gap height={10} />
               {profileInputField.map((field) => {
                 return (
@@ -142,8 +145,7 @@ function Profile() {
               <button
                 type="submit"
                 className="button-secondary"
-                disabled={isValidating}
-              >
+                disabled={isValidating}>
                 {isLoading ? 'Please wait...' : 'Change Profile'}
               </button>
             </Form>

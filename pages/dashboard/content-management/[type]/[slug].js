@@ -20,6 +20,7 @@ export default function DashboardDetailContent() {
   const [initialValues, setInitialValues] = useState({});
   const [isLoaded, setIsLoaded] = useState(false);
   const { userInfo, token } = useUserInfo();
+  const [image, setImage] = useState('');
   const { slug, type } = useQuery();
   const [isSuccess, setIsSuccess] = useState(false);
   const { data, errorType } = useSWR(
@@ -47,6 +48,7 @@ export default function DashboardDetailContent() {
   useEffect(() => {
     if (isLoaded === false && data) {
       setInitialValues(data.data);
+      setImage(data.data.img);
     }
     return () => {
       setIsLoaded(true);
@@ -80,6 +82,7 @@ export default function DashboardDetailContent() {
         desc={initialValues.desc}
         uploadLabel="Pilih cover (jika ingin mengganti)"
         handleFunction={updateContent}
+        image={image}
       />
       <hr />
       <Gap height="10px" />
