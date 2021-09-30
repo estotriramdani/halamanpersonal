@@ -6,33 +6,50 @@ const Footer = () => {
       <footer className="footer">
         <div className="footer-item-wrapper">
           <div className="footer-item">
+            <h2>Tentang</h2>
+            <p style={{ color: 'white' }}>
+              HalamanPersonal adalah website untuk membuat halaman personal yang
+              dapat dijadikan sebagai alat untuk personal branding.
+            </p>
+          </div>
+          <div className="footer-item">
+            <h2>Contribute</h2>
+            <ul>
+              <li>
+                <a
+                  href="https://halamanpersonal-image.my.id/links"
+                  target="_blank"
+                  rel="noreferrer">
+                  Contributor
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://halamanpersonal-image.my.id/links"
+                  target="_blank"
+                  rel="noreferrer">
+                  Contributing
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div className="footer-item">
             <h2>Contact</h2>
             <ul>
               <li>
-                <a href="https://instagram.com">Instagram</a>
+                <a
+                  href="https://instagram.com/estotriramdani"
+                  target="_blank"
+                  rel="noreferrer">
+                  Instagram
+                </a>
               </li>
               <li>
-                <a href="https://facebook.com">Email</a>
-              </li>
-            </ul>
-          </div>
-          <div className="footer-item">
-            <h2>Contributor</h2>
-            <ul>
-              <li>
-                <a href="https://estotriramdani.github.io">Esto Triramdani N</a>
-              </li>
-              <li>
-                <a href="https://github.com/mazuhdi">M Agung Zuhdi </a>
-              </li>
-            </ul>
-          </div>
-          <div className="footer-item">
-            <h2>Contributing</h2>
-            <ul>
-              <li>
-                <a href="https://github.com/estotriramdani">
-                  Click Here To Contribute
+                <a
+                  href="mailto:estolagi@gmail.com"
+                  target="_blank"
+                  rel="noreferrer">
+                  Email
                 </a>
               </li>
             </ul>
@@ -40,7 +57,7 @@ const Footer = () => {
         </div>
       </footer>
       <div className="bottom-section">
-        <p>Copyright © 2021 HalamanPersonal.id</p>
+        <p>Copyright © 2021 HalamanPersonal</p>
       </div>
     </div>
   );
