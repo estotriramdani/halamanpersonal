@@ -11,15 +11,15 @@ const useIsMe = () => {
   const [isMe, setIsMe] = useState(false);
   const { data, error } = useSWR(baseUrl.API + 'user/' + username, fetcher);
 
-  const { userInfo } = useUserInfo();
+  const { userInfo, available } = useUserInfo();
 
   useEffect(() => {
-    if (data) {
+    if (data && userInfo) {
       if (data.data.username === userInfo.username) {
         setIsMe(true);
       }
     }
-  }, [userInfo, data]);
+  }, [userInfo, data, available]);
 
   return isMe;
 };

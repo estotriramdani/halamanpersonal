@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 const useUserInfo = () => {
   const [isLoaded, setIsLoaded] = useState(false);
-
+  const [available, setAvailable] = useState(false);
   const [userInfo, setUserInfo] = useState('');
   const [token, setToken] = useState('');
   useEffect(() => {
@@ -12,6 +12,7 @@ const useUserInfo = () => {
       if (credentials != null || credentials != '') {
         setToken(credentials);
         setUserInfo(user_info);
+        setAvailable(true);
       }
     }
     return () => {
@@ -19,6 +20,7 @@ const useUserInfo = () => {
     };
   }, [isLoaded]);
   return {
+    available,
     userInfo,
     token,
   };
