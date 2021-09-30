@@ -75,7 +75,7 @@ a {
       padding: 20px;
       border-radius: 5px;
       box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s;
+      transition: all 0.3s !important;
       &:hover {
         @include gradientPurple();
         color: $gray-50;
@@ -172,16 +172,16 @@ a {
   .testimonial-card-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
     width: 100%;
   }
 
   .testimonial-card {
-    display: flex;
+    display: block;
     gap: 20px;
     width: 100%;
     flex-wrap: wrap;
-    transition: all 0.19s;
+    transition: all 0.19s !important;
     padding: 20px;
     color: $primary;
     background-color: $gray-50;
@@ -340,6 +340,7 @@ a {
       flex-wrap: wrap;
     }
     .testimonial-card {
+      display: flex;
       padding: 25px;
       gap: 25px;
       width: 400px;

@@ -54,4 +54,8 @@ const login = async (values) => {
   }
 };
 
-export { register, login };
+const forgotPassword = async (value) => {
+  return value ? 'OK' : 'NOT OK';
+};
+
+export { register, login, forgotPassword };

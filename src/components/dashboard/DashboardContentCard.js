@@ -10,7 +10,7 @@ export default function DashboardContentCard({
   type,
 }) {
   const imagePreview =
-    image.substr(0, 5) === 'https' ? image : '/img/placeholder-landscape.jpg';
+    image.substr(0, 4) === 'http' ? image : '/img/placeholder-landscape.jpg';
   return (
     <div
       style={{

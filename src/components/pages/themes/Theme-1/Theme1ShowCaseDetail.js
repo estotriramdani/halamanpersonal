@@ -25,7 +25,7 @@ export default function Theme1ShowCaseDetail({ username, type, slug }) {
                 {data.data.img ? (
                   <Image
                     src={
-                      data.data.img.substr(0, 5) !== 'https'
+                      data.data.img.substr(0, 4) !== 'http'
                         ? '/img/placeholder-landscape.jpg'
                         : data.data.img
                     }

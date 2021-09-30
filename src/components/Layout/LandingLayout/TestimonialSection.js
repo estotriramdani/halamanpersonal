@@ -51,7 +51,7 @@ const TestimonialSection = () => {
                 return <Skeleton key={data} width={200} height={100} />;
               })}
         </div>
-        <Gap height={40} />
+        {/* <Gap height={40} />
         <Link href="/all-user">
           <a
             style={{
@@ -61,7 +61,7 @@ const TestimonialSection = () => {
           >
             See full list here!
           </a>
-        </Link>
+        </Link> */}
       </div>
     </div>
   );
