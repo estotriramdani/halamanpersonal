@@ -7,6 +7,8 @@ import '../styles/utils/trix.css';
 import '../styles/theme/theme-1.css';
 import Head from 'next/head';
 import { metaDescription, metaKeyword } from '../src/data/staticDataString';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
@@ -20,6 +22,7 @@ function MyApp({ Component, pageProps }) {
         <meta name="keywords" content={metaKeyword} />
       </Head>
       <Component {...pageProps} />
+      <ToastContainer />
     </>
   );
 }

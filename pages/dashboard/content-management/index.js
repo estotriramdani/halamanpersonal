@@ -15,7 +15,6 @@ export default function Dashboard() {
     baseUrl.API + 'types/' + userInfo.username,
     fetcher
   );
-  console.log(types);
   return (
     <DashboardLayout title="Content Management" pageTitle="Content Management">
       <h2 className="dashboard-h2">Content Management</h2>
@@ -58,4 +57,24 @@ export default function Dashboard() {
       <Gap height="20px" />
     </DashboardLayout>
   );
+}
+
+export async function getServerSideProps({ req }) {
+  const { credentials } = req.cookies;
+  if (!credentials) {
+    return {
+      redirect: {
+        destination: '/auth/login',
+        permanent: false,
+      },
+    };
+  }
+  const credentialsDecode = Buffer.from(credentials, 'base64').toString(
+    'ascii'
+  );
+  return {
+    props: {
+      credentials: credentialsDecode,
+    },
+  };
 }

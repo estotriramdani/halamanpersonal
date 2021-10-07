@@ -89,10 +89,29 @@ export default function DashboardDetailContent() {
       <button
         className="button-secondary"
         style={{ background: 'red', color: 'white' }}
-        onClick={handleDeleteContent}
-      >
+        onClick={handleDeleteContent}>
         HAPUS KONTEN
       </button>
     </DashboardLayout>
   );
+}
+
+export async function getServerSideProps({ req }) {
+  const { credentials } = req.cookies;
+  if (!credentials) {
+    return {
+      redirect: {
+        destination: '/auth/login',
+        permanent: false,
+      },
+    };
+  }
+  const credentialsDecode = Buffer.from(credentials, 'base64').toString(
+    'ascii'
+  );
+  return {
+    props: {
+      credentials: credentialsDecode,
+    },
+  };
 }

@@ -34,3 +34,18 @@ function Login() {
 }
 
 export default Login;
+
+export async function getServerSideProps({ req }) {
+  const { credentials } = req.cookies;
+  if (credentials) {
+    return {
+      redirect: {
+        destination: '/dashboard',
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: {},
+  };
+}

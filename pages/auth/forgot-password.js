@@ -26,3 +26,18 @@ export default function ForgotPassword() {
     </AuthLayout>
   );
 }
+
+export async function getServerSideProps({ req }) {
+  const { credentials } = req.cookies;
+  if (credentials) {
+    return {
+      redirect: {
+        destination: '/dashboard',
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: {},
+  };
+}

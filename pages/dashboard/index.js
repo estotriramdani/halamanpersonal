@@ -10,3 +10,23 @@ export default function Dashboard() {
     </DashboardLayout>
   );
 }
+
+export async function getServerSideProps({ req }) {
+  const { credentials } = req.cookies;
+  if (!credentials) {
+    return {
+      redirect: {
+        destination: '/auth/login',
+        permanent: false,
+      },
+    };
+  }
+  const credentialsDecode = Buffer.from(credentials, 'base64').toString(
+    'ascii'
+  );
+  return {
+    props: {
+      credentials: credentialsDecode,
+    },
+  };
+}
