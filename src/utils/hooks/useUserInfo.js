@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import Cookies from 'js-cookie';
 
 const useUserInfo = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -8,8 +9,8 @@ const useUserInfo = () => {
   useEffect(() => {
     if (isLoaded === false) {
       const user_info = JSON.parse(window.localStorage.getItem('user_info'));
-      const credentials = window.localStorage.getItem('credentials');
-      if (credentials != null || credentials != '') {
+      const credentials = atob(Cookies.get('credentials'));
+      if (credentials) {
         setToken(credentials);
         setUserInfo(user_info);
         setAvailable(true);

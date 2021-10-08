@@ -1,19 +1,19 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable jsx-a11y/alt-text */
 import { Field, Form, Formik } from 'formik';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import Gap from '../atoms/Gap';
 import useSWR from 'swr';
 import fetcher from '../../utils/helpers/fetcher';
 import { baseUrl } from '../../configs/baseUrl';
 import useUserInfo from '../../utils/hooks/useUserInfo';
-import AlertFloating from '../atoms/AlertFloating';
 import InputFormik from '../atoms/InputFormik';
 import TextareaFormik from '../atoms/TextareaFormik';
 import { useRouter } from 'next/dist/client/router';
 import Image from 'next/image';
 import UploadInstrusction from '../atoms/UploadInstruction';
+import { toast } from 'react-toastify';
 
 export default function AddContent({
   initialValues,
@@ -24,7 +24,6 @@ export default function AddContent({
   handleFunction,
 }) {
   const [isLoading, setIsLoading] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
   const { data: types, error } = useSWR(baseUrl.API + 'types', fetcher);
   const [photo, setPhoto] = useState('');
   const [description, setDescription] = useState(desc);
@@ -48,11 +47,6 @@ export default function AddContent({
 
   return (
     <div>
-      {isSuccess ? (
-        <AlertFloating message="Konten berhasil disimpan" type={'success'} />
-      ) : (
-        ''
-      )}
       {image ? (
         <div
           style={{
@@ -99,9 +93,8 @@ export default function AddContent({
             slug
           );
           if (request) {
-            setIsSuccess(true);
+            toast.success('Konten berhasil disimpan');
             setTimeout(() => {
-              setIsSuccess(false);
               setIsLoading(false);
             }, 2000);
           } else {

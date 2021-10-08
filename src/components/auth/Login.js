@@ -3,7 +3,6 @@ import { Formik, Form } from 'formik';
 import Gap from '../atoms/Gap';
 import { login } from '../../utils/helpers/auth';
 import { useRouter } from 'next/dist/client/router';
-import AuthAlert from '../atoms/Alert';
 import InputFormik from '../atoms/InputFormik';
 import { toast } from 'react-toastify';
 import Cookies from 'js-cookie';
@@ -11,7 +10,6 @@ import Cookies from 'js-cookie';
 export const LoginPage = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(true);
   return (
     <div>
       <Formik
@@ -26,7 +24,6 @@ export const LoginPage = () => {
           if (createUser.token) {
             const credentials = btoa(createUser.token);
             Cookies.set('credentials', credentials);
-            window.localStorage.setItem('credentials', createUser.token);
             window.localStorage.setItem(
               'user_info',
               JSON.stringify(createUser.user)

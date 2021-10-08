@@ -9,9 +9,6 @@ import AuthAlert from '../../atoms/Alert';
 
 function ButtonLogout() {
   const router = useRouter();
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [isLoggedOut, setIsLoggedOut] = useState(false);
-  const [isLoggingOut, setIsLoggingOut] = useState(false);
   const { userInfo, token } = useUserInfo();
 
   const handleLogout = () => {
@@ -38,7 +35,6 @@ function ButtonLogout() {
       })
       .then(() => {
         setIsLoggingOut(false);
-        window.localStorage.setItem('credentials', '');
         window.localStorage.setItem('user_info', '{}');
         Cookies.remove('credentials');
         setTimeout(() => {

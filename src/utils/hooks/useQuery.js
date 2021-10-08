@@ -7,6 +7,7 @@ const useQuery = () => {
     username: query.username,
     slug: query.slug,
     type: query.type,
+    isReady: router.isReady,
   };
 };
 

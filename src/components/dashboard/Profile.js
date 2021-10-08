@@ -1,11 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Form, Formik } from 'formik';
 import Gap from '../atoms/Gap';
 import axios from 'axios';
 import { baseUrl } from '../../configs/baseUrl';
 import { changeProfile } from '../../utils/helpers/dashboard';
-import AlertFloating from '../atoms/AlertFloating';
 import InputFormik from '../atoms/InputFormik';
 import {
   profileFieldInitialValueGenerator,
@@ -15,70 +14,48 @@ import TextareaFormik from '../atoms/TextareaFormik';
 import ProfileSkeleton from './ProfileSkeleton';
 import ProfilePhotoPreview from '../atoms/ProfilePhotoPreview';
 import UploadInstrusction from '../atoms/UploadInstruction';
+import { toast } from 'react-toastify';
+import useUserInfo from '../../utils/hooks/useUserInfo';
 
 function Profile() {
   const [isLoading, setIsLoading] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
-  const [isFailed, setIsFailed] = useState(false);
   const [userInfo, setUserInfo] = useState({});
-  const [token, setToken] = useState('');
   const [photo, setPhoto] = useState('');
   const [introduction, setIntroduction] = useState('');
   const [moreInfo, setMoreInfo] = useState('');
 
-  const handleChangePhoto = (e) => {
-    setPhoto(e.target.value);
-  };
+  const { token } = useUserInfo();
 
-  const handleChangeIntroduction = (e, t) => {
-    setIntroduction(e);
-  };
-
-  const handleChangeMoreInfo = (e) => {
-    setMoreInfo(e);
-  };
+  const getUserInfoLocal = useCallback(async () => {
+    const user_info = await JSON.parse(
+      window.localStorage.getItem('user_info')
+    );
+    axios
+      .get(baseUrl.API + 'user/' + user_info.username)
+      .then((response) => {
+        setUserInfo(response.data.data);
+        setMoreInfo(response.data.data.more_info);
+        setIntroduction(response.data.data.introduction);
+        setPhoto(response.data.data.photo);
+      })
+      .then(() => {
+        setIsLoaded(true);
+      });
+  }, []);
 
   useEffect(() => {
     if (!isLoaded) {
-      const user_info = JSON.parse(window.localStorage.getItem('user_info'));
-      const credentials = window.localStorage.getItem('credentials');
-      setToken(credentials);
-      axios
-        .get(baseUrl.API + 'user/' + user_info.username)
-        .then((response) => {
-          setUserInfo(response.data.data);
-          setMoreInfo(response.data.data.more_info);
-          setIntroduction(response.data.data.introduction);
-          setPhoto(response.data.data.photo);
-          console.log(response.data.data.photo);
-        })
-        .then(() => {
-          setIsLoaded(true);
-        });
+      getUserInfoLocal();
     }
-  }, [isLoaded, token]);
+  }, [getUserInfoLocal, isLoaded]);
   return (
     <div>
-      <>
-        {isSuccess ? (
-          <AlertFloating message="Profile updated!" type={'success'} />
-        ) : (
-          ''
-        )}
-        {isFailed ? (
-          <AlertFloating
-            message="Gagal. Pastikan username dan email bersifat unik."
-            type={'danger'}
-          />
-        ) : (
-          ''
-        )}
-      </>
       {isLoaded ? (
         <Formik
           initialValues={profileFieldInitialValueGenerator(userInfo)}
           onSubmit={async (values, { setSubmitting }) => {
+            console.log(values);
             setIsLoading(true);
             const updateProfile = await changeProfile(
               values,
@@ -87,25 +64,19 @@ function Profile() {
               photo,
               token
             );
+            setIsLoading(false);
             if (updateProfile.status === 'success') {
-              setIsLoading(false);
-              setIsSuccess(true);
               scrollTo(top);
-              setTimeout(() => {
-                setIsSuccess(false);
-              }, 2800);
+              toast.success('Profile berhasil diperbarui');
             } else {
-              setIsFailed(true);
+              toast.error('Gagal. Pastikan username dan email bersifat unik.');
               scrollTo(top);
-              setTimeout(() => {
-                setIsFailed(false);
-              }, 2800);
             }
           }}>
           {({ errors, touched, isValidating }) => (
             <Form>
               <ProfilePhotoPreview
-                onChange={(e) => handleChangePhoto(e)}
+                onChange={(e) => setPhoto(e.target.value)}
                 photo={photo}
               />
               <UploadInstrusction />
@@ -130,14 +101,14 @@ function Profile() {
               <Gap height={15} />
               <TextareaFormik
                 label="Introduction"
-                onChange={(e) => handleChangeIntroduction(e)}
+                onChange={(e) => setIntroduction(e)}
                 placeholder="Please write your short description (example: I am a fast learner and willing to work hard)"
                 value={userInfo.introduction}
               />
               <Gap height={10} />
               <TextareaFormik
                 label="More Info"
-                onChange={(e) => handleChangeMoreInfo(e)}
+                onChange={(e) => setMoreInfo(e)}
                 placeholder="Please provide another information(s) like skills, languages, etc."
                 value={userInfo.more_info}
               />
