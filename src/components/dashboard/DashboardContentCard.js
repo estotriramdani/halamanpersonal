@@ -15,7 +15,7 @@ export default function DashboardContentCard({
     <div
       style={{
         width: '100%',
-        marginBottom: '10px',
+        marginBottom: '30px',
         background: 'white',
         borderRadius: '5px',
         boxShadow: '2px 2px 16px rgba(0, 0, 0, 0.04)',

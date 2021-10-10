@@ -1,14 +1,14 @@
 import axios from 'axios';
+import Cookies from 'js-cookie';
 import { useRouter } from 'next/dist/client/router';
 import React, { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import { baseUrl } from '../../../configs/baseUrl';
 import useUserInfo from '../../../utils/hooks/useUserInfo';
 import AuthAlert from '../../atoms/Alert';
 
 function ButtonLogout() {
   const router = useRouter();
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [isLoggedOut, setIsLoggedOut] = useState(false);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
   const { userInfo, token } = useUserInfo();
 
@@ -36,14 +36,14 @@ function ButtonLogout() {
       })
       .then(() => {
         setIsLoggingOut(false);
-        window.localStorage.setItem('credentials', '');
         window.localStorage.setItem('user_info', '{}');
+        Cookies.remove('credentials');
         setTimeout(() => {
-          setIsLoggedOut(true);
+          toast.warn('Logging you out');
           scrollTo(top);
         }, 400);
         setTimeout(() => {
-          setIsLoggedOut(false);
+          toast.success('Logout success');
           router.push('/auth/login');
         }, 2000);
       })
@@ -52,40 +52,9 @@ function ButtonLogout() {
 
   return (
     <div className="dashboard-nav-item">
-      {isLoggedOut ? (
-        <div
-          style={{
-            width: '300px',
-            position: 'fixed',
-            top: '20px',
-            right: '20px',
-            zIndex: '40',
-          }}
-        >
-          <AuthAlert message="Logout success!" type="success" />
-        </div>
-      ) : (
-        ''
-      )}
-      {isLoggingOut ? (
-        <div
-          style={{
-            width: '300px',
-            position: 'fixed',
-            top: '20px',
-            right: '20px',
-            zIndex: '40',
-          }}
-        >
-          <AuthAlert message="Logging you out. Please wait..." type="warning" />
-        </div>
-      ) : (
-        ''
-      )}
       <a
         style={{ width: '100%', display: 'inline-block', cursor: 'pointer' }}
-        onClick={handleLogout}
-      >
+        onClick={handleLogout}>
         <i className="bi bi-box-arrow-left"></i>&nbsp; Logout
       </a>
     </div>
