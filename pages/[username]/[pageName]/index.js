@@ -14,7 +14,7 @@ export default function Home() {
   const username = router.query.username;
   const pageName = router.query.pageName;
   const { data, error } = useSWR(baseUrl.API + 'user/' + username, fetcher);
-  const isMe = useIsMe();
+  // const isMe = useIsMe();
   const contentCheck = useReadyContent(pageName, username);
 
   if (data) {
@@ -22,7 +22,7 @@ export default function Home() {
       if (contentCheck) {
         return (
           <>
-            {isMe ? <ButtonToDashboard /> : ''}
+            {/* {isMe ? <ButtonToDashboard /> : ''} */}
             <Theme1ShowCase username={username} type={pageName} />
           </>
         );
