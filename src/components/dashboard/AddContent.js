@@ -42,7 +42,7 @@ export default function AddContent({
   let imagePreview;
   if (image) {
     imagePreview =
-      image.substr(0, 5) === 'https' ? image : '/img/placeholder-landscape.jpg';
+      image.substr(0, 4) === 'http' ? image : '/img/placeholder-landscape.jpg';
   }
 
   return (

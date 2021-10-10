@@ -1,8 +1,6 @@
 import { useRouter } from 'next/dist/client/router';
 import { useCallback, useEffect, useState } from 'react';
-import useSWR from 'swr';
 import Theme1Home from '../../src/components/pages/themes/Theme-1/Theme1Home';
-import fetcher from '../../src/utils/helpers/fetcher';
 import { baseUrl } from '../../src/configs/baseUrl';
 import NotFoundPage from '../../src/components/pages/NotFoundPage';
 import Preloader from '../../src/components/pages/Preloader/Index';
@@ -19,7 +17,7 @@ function Home() {
     setData(data.data);
     setUsername(username);
   }, []);
-  const isMe = useIsMe();
+  // const isMe = useIsMe();
   useEffect(() => {
     if (router.isReady) {
       getUserData(router.query.username);
@@ -29,7 +27,7 @@ function Home() {
     if (data.status === 'success') {
       return (
         <>
-          {isMe ? <ButtonToDashboard /> : ''}
+          {/* {isMe ? <ButtonToDashboard /> : ''} */}
           <Theme1Home username={username} userData={data.data} />
         </>
       );

@@ -4,8 +4,10 @@ import React, { useEffect } from 'react';
 import Head from 'next/head';
 import Aos from 'aos';
 import Theme1Footer from './Theme1Footer';
+import { useRouter } from 'next/router';
 
 export default function Theme1Layout({ title, username, children }) {
+  const { isReady } = useRouter();
   useEffect(() => {
     Aos.init();
   }, []);
@@ -19,8 +21,9 @@ export default function Theme1Layout({ title, username, children }) {
           href="https://unpkg.com/aos@2.3.1/dist/aos.css"
           rel="stylesheet"
         />
+        <link rel="stylesheet" href="/css/theme-1.css" />
       </Head>
-      {children}
+      {isReady ? children : ''}
       <Theme1Footer />
       <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
       <script src="/js/theme-1.js"></script>
