@@ -9,6 +9,7 @@ import useQuery from '../../../../src/utils/hooks/useQuery';
 import useUserInfo from '../../../../src/utils/hooks/useUserInfo';
 import styles from './content-detail.module.css';
 import Link from 'next/link';
+import DashboardContentCardSkeleton from '../../../../src/components/dashboard/DashboardContentCardSkeleton';
 
 export default function Type() {
   const { type } = useQuery();
@@ -29,22 +30,22 @@ export default function Type() {
       </h2>
       <Gap height={20} />
       <div className={styles.cardWrapper}>
-        {userInfo && contents && type ? (
-          contents.data.map((content) => {
-            return (
-              <DashboardContentCard
-                key={content.slug}
-                image={content.img}
-                slug={content.slug}
-                subtitle={content.subtitle}
-                title={content.title}
-                type={content.type}
-              />
-            );
-          })
-        ) : (
-          <Skeleton height={200} width="100%" />
-        )}
+        {userInfo && contents && type
+          ? contents.data.map((content) => {
+              return (
+                <DashboardContentCard
+                  key={content.slug}
+                  image={content.img}
+                  slug={content.slug}
+                  subtitle={content.subtitle}
+                  title={content.title}
+                  type={content.type}
+                />
+              );
+            })
+          : [1, 2].map((item) => {
+              return <DashboardContentCardSkeleton key={item} />;
+            })}
       </div>
     </DashboardLayout>
   );

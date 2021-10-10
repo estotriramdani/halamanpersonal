@@ -4,63 +4,26 @@ import { validateEmail } from '../../utils/helpers/formValidator';
 import Gap from '../atoms/Gap';
 import { forgotPassword } from '../../utils/helpers/auth';
 import { useRouter } from 'next/dist/client/router';
-import AuthAlert from '../atoms/Alert';
+import { toast } from 'react-toastify';
 
 export const ForgotPasswordPage = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-  const [successStatus, setSuccessStatus] = useState(null);
   return (
     <div>
-      <>
-        {successStatus === true ? (
-          <div
-            style={{
-              width: '300px',
-              position: 'fixed',
-              top: '20px',
-              right: '20px',
-              zIndex: '40',
-            }}>
-            <AuthAlert
-              message="Success! Please check your email!"
-              type="success"
-            />
-          </div>
-        ) : (
-          ''
-        )}
-        {successStatus === false ? (
-          <div
-            style={{
-              width: '300px',
-              position: 'fixed',
-              top: '20px',
-              right: '20px',
-              zIndex: '40',
-            }}>
-            <AuthAlert message="Failed! Email not found." type="danger" />
-          </div>
-        ) : (
-          ''
-        )}
-      </>
       <Formik
         initialValues={{
           email: '',
         }}
         onSubmit={async (values, { setSubmitting }) => {
           setIsLoading(true);
-          const forgotPasswordAPI = await forgotPassword(false);
+          const forgotPasswordAPI = await forgotPassword(values);
           setIsLoading(false);
-          if (forgotPasswordAPI === 'OK') {
-            setSuccessStatus(true);
+          if (forgotPasswordAPI.status === 'success') {
+            toast.success('Success. Please check your email');
           } else {
-            setSuccessStatus(false);
+            toast.error('Email not found.');
           }
-          setTimeout(() => {
-            setSuccessStatus(null);
-          }, 2000);
           setSubmitting(false);
         }}>
         {({ errors, touched, isValidating }) => (

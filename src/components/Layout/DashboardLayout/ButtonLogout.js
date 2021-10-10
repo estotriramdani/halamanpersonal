@@ -9,6 +9,7 @@ import AuthAlert from '../../atoms/Alert';
 
 function ButtonLogout() {
   const router = useRouter();
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
   const { userInfo, token } = useUserInfo();
 
   const handleLogout = () => {
