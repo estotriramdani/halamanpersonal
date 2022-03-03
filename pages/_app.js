@@ -4,7 +4,7 @@ import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 import 'react-trix/dist/react-trix';
 import '../styles/utils/trix.css';
-// import '../styles/theme/theme-1.css';
+import '../styles/theme/theme-1.css';
 import Head from 'next/head';
 import { metaDescription, metaKeyword } from '../src/data/staticDataString';
 import { ToastContainer } from 'react-toastify';

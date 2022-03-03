@@ -4,8 +4,6 @@ import Theme1Home from '../../src/components/pages/themes/Theme-1/Theme1Home';
 import { baseUrl } from '../../src/configs/baseUrl';
 import NotFoundPage from '../../src/components/pages/NotFoundPage';
 import Preloader from '../../src/components/pages/Preloader/Index';
-import useIsMe from '../../src/utils/hooks/useIsMe';
-import ButtonToDashboard from '../../src/components/atoms/ButtonToDashboard';
 import axios from 'axios';
 
 function Home() {
@@ -17,7 +15,6 @@ function Home() {
     setData(data.data);
     setUsername(username);
   }, []);
-  // const isMe = useIsMe();
   useEffect(() => {
     if (router.isReady) {
       getUserData(router.query.username);

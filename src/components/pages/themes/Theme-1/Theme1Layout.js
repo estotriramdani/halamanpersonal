@@ -21,7 +21,7 @@ export default function Theme1Layout({ title, username, children }) {
           href="https://unpkg.com/aos@2.3.1/dist/aos.css"
           rel="stylesheet"
         />
-        <link rel="stylesheet" href="/css/theme-1.css" />
+        {/* <link rel="stylesheet" href="/css/theme-1.css" /> */}
       </Head>
       {isReady ? children : ''}
       <Theme1Footer />
